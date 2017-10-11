@@ -1,319 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head profile="http://gmpg.org/xfn/11">
-        <meta name=viewport content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <title>Handmade Coding</title>
-        <meta name="description" content="Blogging about hand made programming" />
-        <link rel="shortcut icon" href="favicon.ico" />
-        <link rel="canonical" href="http://handmadebot.com/" />
-        
-	<!-- likes -->
-	<style>
-	.likes{position:relative;display:inline;}
-	.likes span.text{}
-	.likes a.like img, .likes a.liked img{vertical-align:middle;opacity:.8;filter:alpha(opacity = 80);margin:-2px 5px 0 0!important;}
-	.likes a.like img:hover{opacity:1;filter:alpha(opacity = 100);}
-	.likes a.like:hover{text-decoration:none;}
-	.likes div.unlike{display:none;}
-	</style>
+<html lang="en">
 
-	<link rel="stylesheet" href="stylesheets/print.css" type="text/css" media="print" charset="utf-8"/>
+  <head>
 
-	<!-- screen -->
-	<style>
-	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
-	table,tr,th,td{border-collapse:collapse;border-spacing:0;border:1px solid #ddd;}
-	th,td{padding:2px;}
-	fieldset,img{border:0;}
-	address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
-	li{list-style:none;}
-	caption,th{text-align:left;}
-	h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
-	abbr,acronym{border:0;font-variant:normal;}
-	input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
-	a{text-decoration:none;color:inherit;}
-	html{height:100%;font-size:90%;}
-	body{background-color:#eff3f5;color:#45555d;font:normal 1.1em/1.8em "Droid Serif", Georgia, serif;margin:0;height:100%;word-spacing:2px;}
-	pre{font-size:10px;}
-	code{font-family:monospace;}
-	pre code{display:block;background:#111;color:#fff;padding:.5em .75em .35em;margin-bottom:1em;}
-	em{font-style:italic;}
-	strong{font-weight:bold;}
-	a:link,
-	a:visited{color:#8699a3;border-bottom:1px dotted;-webkit-transition:color .5s;-moz-transition:color .5s;transition:color .5s;}
-	a:hover{border:none;-webkit-transition:color .5s;-moz-transition:color .5s;transition:color .5s;}
-	h1, h2{letter-spacing:-.01em;}
-	h1{color:#45555d;font:bold 2.4em "Droid Serif", Georgia, serif;margin-bottom:.3em}
-	h2{color:#45555d;font:normal 2.2em "Droid Serif", Georgia, serif;margin-bottom:.4em;}
-	h3{font:normal 1.5em "Droid Serif", Georgia, serif;margin-bottom:.5em;}
-	h4{font-size:1.25em;font-weight:normal;margin-bottom:.9em;}
-	h5{font-size:1em;font-weight:normal;margin-bottom:1em;}
-	h6{font-size:.8em;font-weight:normal;margin-bottom:1.25em;}
-	ul{margin:0 0 0 1.75em;}
-	ul li{list-style-type:disc;}
-	ol{padding-left:2em;margin-bottom:1em;}
-	ol li{list-style:decimal;}
-	hr{border:0;border-top:1px solid #ddd;}
-	label{color:#8699a3;display:block;font:normal 1em "Droid Serif", Georgia, serif;padding:0 0 0.5em 0;}
-	input:focus{outline:none;}
-	input[type="text"],
-	input[type="password"],
-	textarea{background-color:#f9f9f9;border:1px solid #ccc;border-bottom:1px solid #eee;border-right:1px solid #eee;font-family:'Monaco', Courier, monospace;margin-bottom:1.5em;padding:.3em .4em;}
-	input[type="file"]{margin-bottom:1.5em;}
-	input[type="text"],
-	input[type="password"]{width:20em;}
-	textarea.wide{width:100%;}
-	input.big{font-size:1.5em;}
-	div#controls{background-color:#45555D;border-bottom:.1em solid #d0dde4;padding:.2em 0 .3em;width:100%;font-size:1.2em;}
-	div#controls ul{margin:0 auto;padding:.4em;width:100%;}
-	div#controls ul li{background:none;display:inline;font-weight:normal;margin:0;padding:1;}
-	div#controls ul li a:link:first-child{padding-left:1;}
-	div#controls ul li a:link,
-	div#controls ul li a:visited{color:#E4EBEF;border:none;padding:.2em .2em;margin-right:10px;}
-	div#controls ul li a:hover{color:#c8d0d5;}
-	div#controls ul li.close a:link,
-	div#controls ul li.close a:visited{color:#ff6039;}
-	div#controls ul li.close a:hover{color:#e35533;}
-	div#header{margin:0 0 3em;padding:1px 0px 2px;width:100%;border-bottom:1px solid #e4ebef;}
-	div#header #search_box{float:right;padding-top:1px;}
-	div#header #search_box input#search{background-color:#fff;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;font:12px "Droid Serif", Georgia, serif;border:5px solid #e4ebef;margin:-5px auto 0;width:100%;padding:.4em .7em;display:block;}
-	div#header .header_box{margin:auto;width:100%;font-size:1.2em;}
-	div#header h1{font-size:2em;padding-top:5px;}
-	div#header h1 a:link,
-	div#header h1 a:visited{margin-top:5px;margin-bottom:.2em;font-weight:normal;text-transform:uppercase;color:#8699a3;border:none;}
-	div#header h1 a:hover{color:#45555d;text-decoration:none;border:none;}
-	div#header span.description{font-size:12px;font-weight:normal;font-style:italic;color:#8699a3;position:relative;top:-4px;}
-	div#container{width:100%;margin:2em auto;padding:0 0 1em 0;}
-	div#wrapper{width:100%;margin:2em auto;padding:0 0 1em 0;font-size:1.09em;}
-	div#content{width:100%;float:left;}
-	div#sidebar{float:left;width:100%;border-bottom:1px solid #d0dde4;color:#8699a3;font-size:0.91em;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;}
-	div#sidebar a:link,
-	div#sidebar a:visited{color:#8699a3;}
-	div#sidebar a:hover{color:#45555d;text-decoration:none;}
-	div#sidebar h5{color:#45555d;font-weight:normal;margin:0 0 .2em 0;font-size:1em;}
-	div#sidebar ul, div#sidebar ul li{list-style:none;margin:0;padding:2;}
-	div#sidebar #user_links{margin-bottom:5px;border-bottom:1px solid #d0dde4;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#fffdcc;float:left;width:20%;}
-	div#sidebar #user_links ul{display:inline;}
-	div#sidebar #user_links li{position:relative;list-style:none;float:left;padding:5px 11px;display:block;text-align:center;}
-	div#sidebar #user_links li a{text-transform:uppercase;color:#8699a3;float:left;border-bottom:1px dotted;line-height:14px;padding-top:3px;}
-	div#sidebar #user_links li a:hover{background:none;border:none;color:#45555d;}
-	div#sidebar #user_links li:first-child{border-right:1px solid #eee;}
-	div#sidebar #user_links li.single{width:100%;border-right:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-	div#sidebar #user_links li.single a{float:none;}
-	div#sidebar #user_links .logout_link{}
-	div#sidebar #about_info{border-bottom:1px solid #d0dde4;-webkit-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;background:#fff;float:left;width:40%;padding:5px;line-height:1.6em;}
-	div#sidebar #about_info p img{float:left;margin:0 5px 0px 0;border-bottom:1px solid #d0dde4;}
-	div#sidebar #banner{background:#e4ebef;float:left;}
-	div#banner {border-top:1px solid #eff3f5;border-bottom:1px solid #d0dde4;padding:1px;width:100%;min-width:120px;min-height:50px;}
-	div#sidebar ul li{color:#45555d;}
-	div.notice, div.message, div.warning, div.date{color:#45555d;font-weight:bold;margin:0 0 1em 0;padding:.5em .8em;}
-	div.notice{background:url('../images/dots-green.gif') repeat top left;}
-	div.message{background:url('../images/dots-blue.gif') repeat top left;}
-	div.warning{background:url('../images/dots-red.gif') repeat top left;}
-	div.date{background:url('../images/dots-lightgrey.gif') repeat top left;cursor:default;}
-	div.notice .sub, div.message .sub, div.warning .sub{font-size:.9em;color:#8699a3;margin-left:.5em;}
-	div.post{margin:0 0 2em;word-wrap:break-word;position:relative;height:100%;border:1px solid #d0dde4;-webkit-border-radius:0 0 3px 3px;-moz-border-radius 0 0 3px 3px;border-radius:0 0 3px 3px;}
-	div.post .subpost{background:#fff;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;border:4px solid #f4f5f6;padding:20px 20px 0;font-size:1em;}
-	div.post .no_title{padding:0px 20px 0 20px !important;}
-	div.post .feather_type{position:absolute;margin-left:-47px;top:1.66em;}
-	div.post .feather_type_name{line-height:19px;font-size:0.83em;color:#8699a3;background:#fffdcc;text-align:center;text-transform:uppercase;padding:4px 3px;display:block;float:left;width:100%;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;}
-	div.post .feather_type span.shadow{background:url(../images/post-tag-shadow.png) top left no-repeat;position:absolute;bottom:-4px;left:0;width:100%;height:4px;display:block;}
-	div.post .post_shadow{display:block;float:right;margin-right:1px;width:100%;height:6px;background:url(../images/post-shadow.png) 0px 0px no-repeat;}
-	div.post a:link,
-	div.post a:visited{color:#45555d;}
-	div.post h2.title, div.page h2.title{padding:.1em 0 .2em 0;margin:0;}
-	div.page h2.title{margin:-4px -20px 20px;}
-	div.post h2.title, div.page h2.title{background:url('../images/title-ptn.png') repeat left top;margin:-5px -20px 20px;padding:0px 20px;font-size:2.16em;}
-	div.post h2.title a:link,
-	div.post h2.title a:visited{color:#45555d;font-style:normal;font-weight:normal;border:none;}
-	div.post h2.title a:hover{color:#ff6039;}
-	div.post .pinned_icon{float:left;width:100%;height:25px;background-image:url(../images/pin.png);background-repeat:no-repeat;margin:-2.5em 0 0 -4em;}
-	div.post .private_text{float:left;font-size:.8em;font-weight:bold;margin:.3em 0 0 -5em;color:#e35533;}
-	div.post .scheduled_text{float:left;font-size:.8em;font-weight:bold;margin:.3em 0 0 -7em;color:#e35533;}
-	div.post p,
-	div.page p{padding:0 0 1em;}
-	div.post li,
-	div.page li{}
-	div.post li p,
-	div.page li p{font-size:1em;}
-	div.post pre,
-	div.page pre{padding:0 0 1.5em;}
-	div.post blockquote{padding:.5em .8em;background:#f9f9f9;border:.1em solid #eee;color:#45555d;margin:0 0 1em 0;}
-	div.post blockquote p{padding:0;}
-	div.post .post_meta{font-size:0.91em;color:#8699a3;}
-	div.post .post_meta a:link, div.post .post_meta a:visited{color:#8699a3;}
-	div.post .post_meta a:hover{color:#45555d;border:none;}
-	::selection{background:#ff6039;color:#fff;}
-	div.post .post_meta .info{margin:20px -20px 0px;padding:3px 20px;background-color:#f4f5f6;float:left;width:100%;}
-	div.post .post_meta .info li{display:inline;padding:7px 10px 7px 25px;border-right:1px solid #fefefe;}
-	div.post .post_meta .info li.date{padding-left:20px;}
-	div.post .post_meta .info li:last-child{border:none;}
-	.post_meta .info .has_icon{position:relative;padding-left:20px;}
-	.post_meta .has_icon .icon{width:100%;height:15px;background-image:url("../images/icons.png");position:absolute;left:5px;top:6px;z-index:1;}
-	.post_meta .icon_posted .icon{background-position:0px 0px;left:0;}
-	.post_meta .icon_comment .icon{background-position:-15px 0px;}
-	.post_meta .icon_like .icon{background-position:-30px 0px;}
-	.post_meta .icon_category .icon{background-position:-60px 0px;}
-	.post_meta .icon_permalink .icon{background-position:-80px -15px;width:8px;left:10px;top:5px;}
-	.post_meta .icon_tags .icon{background-position:-45px 0px;top:3px;left:0;}
-	.post_meta a{border:none;}
-	.post_meta .permalink{position:relative;overflow:hidden;margin:13px -20px 15px 0px;padding:3px 20px 3px 25px;float:right;background:#f4f5f6;}
-	.post_meta .tags{position:relative;overflow:hidden;margin:15px 0;padding:0px 0px 0px 20px;float:left;}
-	.post_meta .tags a{font-family:"Droid Serif", Georgia, serif;font-size:0.83em;line-height:1;display:inline-block;padding:3px 6px 4px;background:#f4f5f6;-webkit-transition:background .3s, color .3s;-moz-transition:background .3s, color .3s;transition:background .3s, color .3s;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;color:#8699a3;font-style:normal;}
-	.post_meta .tags a:hover{color:#8699a3;background:#E4EBEF;}
-	.post_meta .author_avatar{float:left;display:inline;margin-right:10px;position:relative;}
-	.post_meta .author_avatar img{display:block;}
-	#content .page_nav{margin-top:2em;text-align:center;}
-	#content .page_nav li{padding:5px 0 7px;float:left;display:inline;margin-right:20px;}
-	#content .page_nav .icon{background-color:#999 !important;}
-	#content .page_nav .icon_prev .icon{background-position:-310px -111px;}
-	#content .page_nav .icon_next .icon{background-position:-330px -111px;left:auto;right:0;}
-	#content .page_nav .icon_next{padding-left:0;padding-right:20px;}
-	#content .page_nav li:hover .icon{background-color:#666 !important;}
-	.post_meta li.facebook{padding-top:7px;position:relative;overflow:hidden;}
-	.post_meta li.facebook iframe{height:21px;float:left;display:inline;zoom:1;}
-	.post_meta li.facebook iframe.twitter-share-button{margin-right:7px;}
-	div.post span.controls,
-	div.page span.controls{float:right;font-style:normal;}
-	div.post ul{margin-bottom:1em;}
-	div.post.quote blockquote{border:0;color:#45555d;font:italic 1.7em/1.25em "Droid Serif", Georgia, serif;margin:0px 0px 1px -2px;padding:5px 2px;width:100%;text-align:center;background-color:rgba(254, 252, 204, 0.7);position:relative;}
-	div.post.quote blockquote:before{content:'�';height:0;top:40px;left:-15px;font-size:7em;position:absolute;color:rgba(69, 84, 93, 0.05);}
-	div.post.quote blockquote:after{content:'�';height:0px;bottom:-2px;position:absolute;right:2px;font-size:7em;color:rgba(69, 84, 93, 0.05);}
-	div.post.quote .source{color:#45555d;display:block;}
-	div.post.link h2 a:link,
-	div.post.link h2 a:visited{color:#3f5161;font-size:1em;margin:0 0 -.5em 0;padding:0;text-decoration:underline;}
-	div.post.link h2 a:hover{color:#354451;}
-	div.post.link p{color:#45555d;}
-	div.post.chat p{display:inline;}
-	div.post.chat ul.dialogue{font-family:"monaco", monospace;font-size:.9em;margin:0 1em 1em 0;padding:0;color:#535353;}
-	div.post.chat ul.dialogue li{background:none;list-style-type:none;padding:0;}
-	div.post.chat ul.dialogue li .label{color:#2D3879;}
-	div.post.chat ul.dialogue li.me .label{color:#AB2F26;}
-	div.post.photo img{margin:0px 0px 20px -20px;}
-	div.post.photo div.subpost h2.title + a:link,
-	div.post.photo div.subpost h2.title + a:visited{display:inline-block;border:none;}
-	div.post a img, div.page a img{border:none;vertical-align:top;}
-	div.post img, div.page img{max-width:100%;}
-	div.post.photo p,
-	div.post.audio p,
-	div.post.video p{margin:.4em 0;}
-	div.post.video iframe, div.post.video embed{margin:0px 0px 20px -20px;}
-	div.page, div.archive{margin:0 0 2em;word-wrap:break-word;position:relative;height:100%;border:1px solid #d0dde4;background:#fff;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;padding:20px;}
-	div.page .page_shadow, div.archive .page_shadow{display:block;width:100%;height:6px;background:url(../images/post-shadow.png) 0px 0px no-repeat;position:relative;top:3px;right:1px;}
-	div.page h2{color:#45555d;font:normal 2.2em "Droid Serif", Georgia, serif;letter-spacing:-.01em;}
-	div.page h2.title{padding:.2em 0 .6em 0;}
-	div.page h2.title{background:url('../images/title-ptn.png') repeat left top;margin:-5px -20px 20px;padding:5px 0 0 20px;}
-	div.page span.controls{float:right;}
-	a.comment_delete_link,
-	a.comment_edit_link,
-	a.comment_reply_link,
-	a.delete_link,
-	a.edit_link,
-	a.next_page,
-	a.prev_page,
-	a.next_post,
-	a.prev_post,
-	a.cancel,
-	a.logout{font-weight:normal;font-size:10px;padding:1px 2px;}
-	a.comment_delete_link,
-	a.comment_edit_link,
-	a.comment_reply_link{float:right;margin:0 0 0 .5em;}
-	a.delete_link{color:#d8583e !important;padding:0;}
-	a.edit_link{color:#93ba52 !important;padding:0;}
-	a.comment_reply_link{}
-	a.next_page, a.next_page:visited,
-	a.prev_page, a.prev_page:visited,
-	a.next_post, a.next_post:visited,
-	a.prev_post, a.prev_post:visited{-webkit-transition:background-color .3s;-moz-transition:background-color .3s;transition:background-color .3s;background-color:#e4ebef;color:#45555d;margin:0 0 2em;padding:.6em .8em;border:none;}
-	a.next_page span.arrow, a.next_post span.arrow{background:url(../images/arrows.png) no-repeat right top;float:right;height:9px;position:relative;width:6px;margin-left:5px;margin-top:4px;}
-	a.prev_page span.arrow, a.prev_post span.arrow{background:url(../images/arrows.png) no-repeat left top;float:left;height:9px;position:relative;width:6px;margin-right:5px;margin-top:4px;}
-	a.next_page, a.next_post{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;position:relative;}
-	a.prev_page, a.prev_post{-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;}
-	a.next_page:hover,
-	a.prev_page:hover,
-	a.next_post:hover,
-	a.prev_post:hover{-webkit-transition:background-color .3s;-moz-transition:background-color .3s;transition:background-color .3s;background-color:#D0DDE4;}
-	a.cancel{color:#e35533;border:none;text-decoration:underline;}
-	a.logout{color:#8699a3;border:none;float:right;}
-	a.logout:hover{color:#45555d;}
-	.inline_edit{color:#8699a3;padding:1em;background:#D0DDE4;position:relative;}
-	.inline_edit input[type="text"],
-	.inline_edit textarea{background-color:#f4f5f6;border:none;color:#45555d;padding:.4em;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-	.inline_edit .more_options_link{color:#5B7C99;display:block;font-weight:bold;padding:0 0 .3em 0;}
-	.inline_edit .more_options_link:hover{border-bottom:1px solid #5B7C99;}
-	.inline_edit .more_options{background-color:#E4EBEF;padding:1em;}
-	.inline_edit .more_options p{float:left;width:50%;min-height:5em;padding-bottom:.5em;margin:0;}
-	.inline_edit .more_options p input[type="text"]{width:100%;margin-bottom:0;}
-	.inline_edit .more_options p .sub{font-size:.8em;color:#8699a3;}
-	.inline_edit .buttons{padding:.5em;background:#D0DDE4;color:#45555d;}
-	.inline_edit h2{color:#83A650;}
-	.post_edit{margin-bottom:2em;}
-	div.pagination{margin:0 0 2em 0;}
-	.sub{font-size:.85em;color:#8699a3;font-weight:normal;}
-	button{background-color:#E4EBEF;border:1px solid #D0DDE4;border-bottom:1px solid #a0b5bf;border-right:1px solid #a0b5bf;color:#45555d;font-size:1em;font-weight:bold;padding:5px 8px;}
-	button:hover{color:#5B7C99;cursor:pointer;}
-	p.lost_pass{margin:0 0 1em 0;}
-	span.pages{color:#788B96;font-weight:bold;padding:4px 8px 5px;background:#D1DCE2;margin:0 -3px;}
-	span.who,
-	span.waiting{background-color:#fffdcc;display:block;margin:0 0 1em;padding:4px 6px;}
-	.clear{clear:both;}
-	.right{float:right;}
-	.left{float:left;}
-	div#comment_form{padding:20px;}
-	h3.comments{margin:1em 0;}
-	ol.comments{list-style:none;margin-bottom:1em;padding:0;word-wrap:break-word;}
-	ol.comments li{list-style:none;margin-bottom:1.5em;width:auto;}
-	ol.comments li blockquote{background:#E4EBEF;color:#45555d;margin:0;padding:1em 1em 0;}
-	ol.comments li blockquote p{padding:0 0 1em;}
-	ol.comments li blockquote a:link,
-	ol.comments li blockquote a:visited{color:#aaa;}
-	ol.comments li blockquote blockquote{padding:0 1em;color:#aaa;}
-	ol.comments li cite{background:#E4EBEF;color:#8699a3;display:block;font-style:normal;margin:0;padding:.4em 1.3em;font-size:0.91em;}
-	ol.comments li cite a:link,
-	ol.comments li cite a:visited{color:#45555d;border:none;}
-	ol.comments li cite a.permalink:link,
-	ol.comments li cite a.permalink:visited{color:#8699a3;border-bottom:1px dotted;}
-	ol.comments li cite a:hover{color:#45555d !important;border:none !important;}
-	ol.comments li ul,
-	ol.comments li ol{margin:0;padding:0 0 1em 1.5em;}
-	ol.comments li ul li,
-	ol.comments li ol li{margin:0;padding:0;}
-	ol.comments li ol li{list-style-type:decimal;}
-	ol.comments li.child{margin-left:25px;}
-	span.comment_author a{color:#ff6039 !important;}
-	span.label{color:#8699a3;}
-	#add_comment{margin-top:3em;border-top:4px solid #D0DDE4;padding-top:1em;}
-	img.smiley{margin:0 0 -.3em;}
-	.tag{font-family:"Droid Serif", Georgia, serif;}
-	.tags_select{display:inline-block;margin-top:.5em;}
-	.tags_select a{padding:.1em .4em;border:.1em solid #DDDDA8;background:#fffdcc;text-decoration:none;border-top-width:0;border-left-width:0;color:#45555d;}
-	.tags_select a.tag_added{background:#D0DDE4;border-top-width:.1em;border-bottom:0;border-left-width:.1em;border-right:0;border-color:#8699a3;}
-	div#footer{background:#E4EBEF;clear:both;color:#8699a3;margin:8em 0 3em;padding:.4em .9em;border-top:1px solid #D0DDE4;width:300px;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;font-size:0.91em;}
-	div#footer a:link, div#footer a:visited{color:#8699A3;}
-	div#footer a:hover{color:#45555d;}
-	div#footer a.atom{border:none;margin-top:-2em;padding:.3em .6em;float:right;}
-	div#footer a.atom:hover{background-color:#fffdcc;}
-	#debug{background:#ffffdd;font-family:normal 1.1em/1.5em 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;color:#666;padding:.4em .75em .5em .75em;border-top:.1em solid #ddd;position:fixed;bottom:0;left:0;right:0;z-index:5;max-height:33%;overflow-y:auto;overflow-x:hidden;}
-	#debug h5{margin:0;font-size:1.1em;color:#a3a39a;}
-	#debug h5 .sub{color:#b3b3aa;}
-	#debug ol.queries li{margin:0 0 1em;}
-	#debug pre{background:#fff;border:1px solid #ddd;padding:0 .5em;word-wrap:break-word;}
-	#debug .toggle{font-weight:bold;color:#666;float:right;}	</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!--
-	<script src="http://handmadebot.com/includes/lib/gz.php?file=jquery-1.8.3.min.js" async defer></script>
-	<script src="http://handmadebot.com/includes/lib/gz.php?file=plugins.min.js" async defer></script>
-	<script src="http://handmadebot.com/includes/javascript.php?action=index" async defer></script>
-	<script src="http://handmadebot.com/modules/likes/javascript.php" async defer></script>
-	<script src="http://handmadebot.com/themes/firecrest/javascripts/theme.js.php" async defer></script>
--->
+    <title>Handmade Coding</title>
 
-    
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Google -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Google -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -322,56 +32,75 @@
          ga('create', 'UA-63280987-1', 'auto');
          ga('send', 'pageview');
         </script>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-        <!-- Twitter -->
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- Twitter -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-    </head>
-    <body>
-        
-        <div id="container">
-            
-            <div id="header">
-                <div class="header_box">
-                    <h1><a href="http://handmadebot.com">Handmade Coding</a>
-                        <span class="description">Blogging about hand made programming</span>
-                    </h1>
-                </div>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Handmade Coding</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="http://www.derinworksllc.com#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Handmade Coding</h1>
+              <img src="img/profile.jpg" alt="Oz"/>
+              <span class="subheading">Blogging about hand made programming</span>
             </div>
-            
-            <div id="wrapper">
+          </div>
+        </div>
+      </div>
+    </header>
 
-                <div id="sidebar">
-                	<div id="about_info">
-                    	<p><img src="images/profile.jpg" alt="Oz" />All about nicely written code by hand :)</p>
-		    			<div>&nbsp;</div>
-		    			<div class="g-ytsubscribe" data-channelid="UC4Zkn7JccO-82HrN_L-YRpw" data-layout="full" data-count="hidden"></div>
-                	</div>
-                	<div id="banner">
-						<!-- Google Adsense -->
-						<!-- First Handmadebot Ad Unit -->
-						 <ins class="adsbygoogle"
-							  style="display:block"
-							  data-ad-client="ca-pub-1096775848340776"
-							  data-ad-slot="1671826447"
-							  data-ad-format="auto">
-						 </ins>
-                	</div>
-            	</div>
-
-                <div id="content">
-					<div class="post text" id="post_3">
-                    	<div class="feather_type">
-                        	<span class="feather_type_name">text</span>
-                        	<span class="shadow"></span>
-                    	</div>
-                    	<div class="subpost">
-        				<h2 class="title">How to use Google Drive REST API for document conversion?</h2>
-    					<p><h4>Google Drive Authorization:</h4>
-							<p>	First we need follows examples at&nbsp;	<a href="https://developers.google.com/drive/web/auth/web-server">drive authorization server-side</a> to build a nice proxy for authorization:</p>
-
-<pre>import java.io.IOException;
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div id="banner">
+          <!-- Google Adsense -->
+          <!-- First Handmadebot Ad Unit -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-1096775848340776"
+               data-ad-slot="1671826447"
+               data-ad-format="auto">
+          </ins>
+        </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <article>
+            <h2 class="title">How to use Google Drive REST API for document conversion?</h2>
+            <p><h4>Google Drive Authorization:</h4>
+            <p>	First we need to follow examples at&nbsp;	<a
+                    href="https://developers.google.com/drive/web/auth/web-server">drive authorization server-side</a> to build a nice proxy for authorization:</p>
+ <pre>
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 
@@ -390,11 +119,11 @@ import com.oz.drv.api.GoogDrvConnConfig;
 public class GoogDrvAuthProxyImpl implements GoogDrvAuthProxy
 {
 	/**
-	 * Follow instructions at: 
+	 * Follow instructions at:
 	 * &lt;a href="https://developers.google.com/drive/web/auth/web-server"&gt;Implementing Server-Side Authorization&lt;/a&gt;
 	 * Choose "Installed application" option.
 	 */
-	private static final String PATH_CLIENT_SECRET_JSON = 
+	private static final String PATH_CLIENT_SECRET_JSON =
 		"./client_secret.json";
 	private final GoogDrvConnConfig drvConnConfig;
 	public GoogDrvAuthProxyImpl(final GoogDrvConnConfig drvConnConfig)
@@ -405,7 +134,7 @@ public class GoogDrvAuthProxyImpl implements GoogDrvAuthProxy
 	public Credential authorize(final String user)
 	 throws IOException, GeneralSecurityException {
 		final JsonFactory jsonFactory = drvConnConfig.getJsonFactory();
-		final GoogleClientSecrets clientSecrets = 
+		final GoogleClientSecrets clientSecrets =
 			GoogleClientSecrets.load(jsonFactory
 				, new InputStreamReader(
 					ClassLoader.getSystemResourceAsStream(
@@ -431,10 +160,16 @@ public class GoogDrvAuthProxyImpl implements GoogDrvAuthProxy
 		return drvConnConfig.getJsonFactory();
 	}
 }
-</pre><h4>Using Google Drive API for file conversion:</h4><p>
-	Then we can build an example following guide at 
-	<a href="https://developers.google.com/drive/web/quickstart/java">drive quick-start guide</a> and some tips at&nbsp;<a href="https://developers.google.com/drive/web/manage-downloads">downloading files using drive API</a>:</p>
-<pre>import java.io.File;
+</pre>
+            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
+          </article>
+          <hr>
+          <article>
+            <h2 class="title">How to use Google Drive REST API for document conversion?</h2>
+            <h4>Using Google Drive API for file conversion:</h4><p>
+            Then we can build an example following guide at
+            <a href="https://developers.google.com/drive/web/quickstart/java">drive quick-start guide</a> and some tips at&nbsp;<a href="https://developers.google.com/drive/web/manage-downloads">downloading files using drive API</a>:</p>
+            <pre>import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
@@ -447,7 +182,7 @@ import com.google.api.services.drive.Drive;
 import com.oz.drv.api.GoogDrvAuthProxy;
 import com.oz.drv.api.GoogDrvSvcProxy;
 public class GoogDrvSvcProxyImpl implements GoogDrvSvcProxy
-{	
+{
 	private final String appName;
 	private final GoogDrvAuthProxy drvAuthProxy;
 	public GoogDrvSvcProxyImpl(final String appName, final GoogDrvAuthProxy drvAuthProxy)
@@ -467,7 +202,7 @@ public class GoogDrvSvcProxyImpl implements GoogDrvSvcProxy
 		final HttpTransport transport = drvAuthProxy.getTransport();
 		final Credential cred = drvAuthProxy.authorize(user);
 		final AbstractInputStreamContent mediaContent = new FileContent(mimeType, file);
-		final com.google.api.services.drive.model.File content = 
+		final com.google.api.services.drive.model.File content =
 			new com.google.api.services.drive.model.File()
 			.setTitle(file.getName())
 		;
@@ -515,45 +250,17 @@ public class GoogDrvSvcProxyImpl implements GoogDrvSvcProxy
 		;
 	}
 }
-</pre></p>
-
-                        
-                        <div class="clear"></div>
-                        <div class="post_meta">
-                            <ul class="info">
-                                <li class="date has_icon icon_posted"><div class="icon"></div> June 25 </li>
-                            </ul>
-                            <span class="tags has_icon icon_tags"><div class="icon"></div>
-                            Tags: <a href="http://handmadebot.com/?action=tag&amp;name=java-google-drive" rel="tag">java google drive</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-api" rel="tag">google drive api</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-rest-api" rel="tag">google drive rest api</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-convert-document" rel="tag">google drive convert document</a> <a href="http://handmadebot.com/?action=tag&amp;name=cloud-document-conversion" rel="tag">cloud document conversion</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-api-generate-pdf" rel="tag">google drive api generate pdf</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-export-links" rel="tag">google drive export links</a> <a href="http://handmadebot.com/?action=tag&amp;name=google-drive-api-downloadurl" rel="tag">google drive api download_url</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade" rel="tag">handmade</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade-coding" rel="tag">handmade coding</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmadebot" rel="tag">handmadebot</a>
-                            </span>
-                            
-                        </div>
-                        <div class="clear"></div>
-                        
-                        <div class="clear"></div>
-                    </div>
-                    <div class="post_shadow"></div>
-                </div>
-
-                    
-<div class="post text" id="post_2">
-                    <div class="feather_type">
-                        <span class="feather_type_name">text</span>
-                        <span class="shadow"></span>
-                    </div>
-                    <div class="subpost">
-                        
-                        
-                        
-                        
-    
-        <h2 class="title">How to use Dozer map-id for multiple destinations?</h2>
-    
-    <p><h4>Java source:</h4>
-<p>
-	Dozer's map-id attribute has to be unique across, but we can still use map-id to define mapping to multiple destinations of the same source. Here is a method that is trying achieve this:
-</p>
-<pre>
+</pre>
+            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
+          </article>
+          <hr>
+          <article>
+            <h2 class="title">How to use Dozer map-id for multiple destinations?</h2>
+            <p><h4>Java source:</h4>
+            <p>
+              Dozer's map-id attribute has to be unique across, but we can still use map-id to define mapping to multiple destinations of the same source. Here is a method that is trying achieve this:
+            </p>
+            <pre>
 @Component("theMapper")
 public class TheMapper {
 	@Resource
@@ -571,16 +278,16 @@ public class TheMapper {
 	}
 }
 </pre>
-<h4>Dozer XML mappings:</h4>
-<p>
-	How do the dozer mapping configuration look like? This is for the first destination type (dozer-mapping-A.xml):
-</p>
-<pre>
+            <h4>Dozer XML mappings:</h4>
+            <p>
+              How do the dozer mapping configuration look like? This is for the first destination type (dozer-mapping-A.xml):
+            </p>
+            <pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mappings xmlns="http://dozer.sourceforge.net"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="
-	http://dozer.sourceforge.net 
+	http://dozer.sourceforge.net
 	http://dozer.sourceforge.net/schema/beanmapping.xsd"
 	&lt;mapping map-id="destA_ss2sd"&gt;
 		&lt;class-a&gt;SomeSrcBean&lt;/class-a&gt;
@@ -600,10 +307,10 @@ public class TheMapper {
 	&lt;/mapping&gt;
 &lt;/mappings&gt;
 </pre>
-<p>
-	...And the one for the second destination type&nbsp;(dozer-mapping-B.xml):
-</p>
-<pre>
+            <p>
+              ...And the one for the second destination type&nbsp;(dozer-mapping-B.xml):
+            </p>
+            <pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mappings xmlns="http://dozer.sourceforge.net"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -628,11 +335,11 @@ public class TheMapper {
 	&lt;/mapping&gt;
 &lt;/mappings&gt;
 </pre>
-<h4>Spring configuration:</h4>
-<p>
-	I have used spring to hook up the XML mappings to Java source (spring-beans.xml):
-</p>
-<pre>
+            <h4>Spring configuration:</h4>
+            <p>
+              I have used spring to hook up the XML mappings to Java source (spring-beans.xml):
+            </p>
+            <pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -641,8 +348,8 @@ public class TheMapper {
 &nbsp; &nbsp; http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 &nbsp; &nbsp; http://www.springframework.org/schema/context
 &nbsp; &nbsp; http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-&lt;context:component-scan base-package="com.oz.dozer.mapper"/&gt;  
-&lt;context:annotation-config/&gt;  
+&lt;context:component-scan base-package="com.oz.dozer.mapper"/&gt;
+&lt;context:annotation-config/&gt;
 &lt;bean id="mapper" class="org.dozer.DozerBeanMapper"&gt;
   &lt;property name="mappingFiles"&gt;
     &lt;list&gt;
@@ -653,11 +360,11 @@ public class TheMapper {
 &lt;/bean&gt;
 &lt;/beans&gt;
 </pre>
-<h4>TestNG Spring Run:</h4>
-<p>
-	I have used testng spring context test to connect the dots and test this out:
-</p>
-<pre>
+            <h4>TestNG Spring Run:</h4>
+            <p>
+              I have used testng spring context test to connect the dots and test this out:
+            </p>
+            <pre>
 @ContextConfiguration("classpath:spring-beans.xml")
 public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
 	@Autowired
@@ -672,13 +379,13 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
 		ssb.setSomeSrcStr2(someSrcStr2);
 		final double anotherSrcDbl = 666.66d;
 		asb.setAnotherSrcDbl(anotherSrcDbl);
-		final SomeDestinationBean sdb1 = 
+		final SomeDestinationBean sdb1 =
 			theMapper.map(ssb, asb, "destA");
 		AssertJUnit.assertEquals("Some str"
 			, sdb1.getSomeDestinationStr(), someSrcStr);
 		AssertJUnit.assertEquals("Another dbl"
 			, sdb1.getSomeDestinationDbl(), anotherSrcDbl);
-		final SomeDestinationBean sdb2 = 
+		final SomeDestinationBean sdb2 =
 			theMapper.map(ssb, asb, "destB");
 		AssertJUnit.assertEquals("Some str 2"
 			, sdb2.getSomeDestinationStr(), someSrcStr2);
@@ -687,46 +394,19 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
 	}
 }
 </pre></p>
+            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
+          </article>
+          <hr>
+          <article>
+            <h2 class="title">
+              Active MQ Proof of Concept
+            </h2>
 
-                        
-                        <div class="clear"></div>
-                        <div class="post_meta">
-                            <ul class="info">
-                                <li class="date has_icon icon_posted"><div class="icon"></div> June 10 </li>
-                            </ul>
-                            <span class="tags has_icon icon_tags"><div class="icon"></div>
-                            Tags: <a href="http://handmadebot.com/?action=tag&amp;name=dozer" rel="tag">dozer</a> <a href="http://handmadebot.com/?action=tag&amp;name=dozer-mapping" rel="tag">dozer mapping</a> <a href="http://handmadebot.com/?action=tag&amp;name=mapping-xml" rel="tag">mapping xml</a> <a href="http://handmadebot.com/?action=tag&amp;name=map-id" rel="tag">map-id</a> <a href="http://handmadebot.com/?action=tag&amp;name=dozer-map-id" rel="tag">dozer map-id</a> <a href="http://handmadebot.com/?action=tag&amp;name=dozer-map-id-unique" rel="tag">dozer map-id unique</a> <a href="http://handmadebot.com/?action=tag&amp;name=map-id-multiple" rel="tag">map-id multiple</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring" rel="tag">spring</a> <a href="http://handmadebot.com/?action=tag&amp;name=testng" rel="tag">testng</a> <a href="http://handmadebot.com/?action=tag&amp;name=testngspringcontext" rel="tag">testngspringcontext</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring-testng" rel="tag">spring testng</a> <a href="http://handmadebot.com/?action=tag&amp;name=java-spring" rel="tag">java spring</a> <a href="http://handmadebot.com/?action=tag&amp;name=java-spring-testng" rel="tag">java spring testng</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade" rel="tag">handmade</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade-coding" rel="tag">handmade coding</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmadebot" rel="tag">handmadebot</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring-testing" rel="tag">spring testing</a> <a href="http://handmadebot.com/?action=tag&amp;name=xml-mapping" rel="tag">xml mapping</a> <a href="http://handmadebot.com/?action=tag&amp;name=mock-java" rel="tag">mock java</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring-test" rel="tag">spring test</a>
-                            </span>
-                        </div>
-                        <div class="clear"></div>
-                        
-                        <div class="clear"></div>
-                    </div>
-                    <div class="post_shadow"></div>
-                </div>
-
-                    
-<div class="post text" id="post_1">
-                    <div class="feather_type">
-                        <span class="feather_type_name">text</span>
-                        <span class="shadow"></span>
-                    </div>
-                    <div class="subpost">
-                        
-                        
-                        
-                        
-    
-        <h2 class="title">
-Active MQ Proof of Concept
-        </h2>
-    
-    <p><h4>
-This is a proof of concept blog about&nbsp;Active MQ using Tomee+ JMS, Servlet, Endpoint on the server side, and Angular, JS web sockets on the client side. Java testing is done via JUnit, Mockito. Javascript testing is done via Jasmine.</h4><h4>
-Let's first start out by describing the maven setup of the project...</h4><ol>
-</ol><h5>
-1. Maven Compiler plugin (the usual) version 3.1 and the project requires JDK 1.7 and up:</h5>
-<pre>      &lt;plugin&gt;
+            <p>
+            This is a proof of concept blog about&nbsp;Active MQ using Tomee+ JMS, Servlet, Endpoint on the server side, and Angular, JS web sockets on the client side. Java testing is done via JUnit, Mockito. Javascript testing is done via Jasmine.
+            Let's first start out by describing the maven setup of the project...
+            1. Maven Compiler plugin (the usual) version 3.1 and the project requires JDK 1.7 and up:</p>
+            <pre>      &lt;plugin&gt;
         &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
         &lt;version&gt;3.1&lt;/version&gt;
         &lt;configuration&gt;
@@ -735,8 +415,8 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
         &lt;/configuration&gt;
       &lt;/plugin&gt;
 </pre><p>
-	2. a) Jasmine Maven plugin simplifies integrating JS testing into maven test lifecycle goal (Notice the executions tag):</p>
-<pre>      &lt;plugin&gt;
+            2. a) Jasmine Maven plugin simplifies integrating JS testing into maven test lifecycle goal (Notice the executions tag):</p>
+            <pre>      &lt;plugin&gt;
         &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
         &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.3.1.5&lt;/version&gt;
@@ -749,8 +429,8 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
         &lt;/executions&gt;
       &lt;/plugin&gt;
 </pre><p>
-	2. b) We add some custom configuration to Jasmine Maven plugin to support Angular testing with a selenium chrome driver&nbsp;(angular-mocks helps with mocking the angular plumbing), and we have a customized JS source directory (default is src/main/javascript):</p>
-<pre>      &lt;plugin&gt;
+            2. b) We add some custom configuration to Jasmine Maven plugin to support Angular testing with a selenium chrome driver&nbsp;(angular-mocks helps with mocking the angular plumbing), and we have a customized JS source directory (default is src/main/javascript):</p>
+            <pre>      &lt;plugin&gt;
         &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
         &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.3.1.5&lt;/version&gt;
@@ -774,15 +454,15 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
         &lt;/executions&gt;
       &lt;/plugin&gt;
 </pre><p>
-	3. a) Last piece is a TOMEE maven plugin that helps with packaging/deploying to a TOMEE server and starting debugging</p>
-<pre>      &lt;plugin&gt;
+            3. a) Last piece is a TOMEE maven plugin that helps with packaging/deploying to a TOMEE server and starting debugging</p>
+            <pre>      &lt;plugin&gt;
         &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
         &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.7.1&lt;/version&gt;
       &lt;/plugin&gt;
 </pre><p style="margin-left: 20px;"></p><p>
-	3. b) We add reload synchronization configuration to TOMEE maven plugin that automates hot code deploy (Java, JS or HTML changes) to a TOMEE+ server at debug mode:</p>
-<pre>      &lt;plugin&gt;
+            3. b) We add reload synchronization configuration to TOMEE maven plugin that automates hot code deploy (Java, JS or HTML changes) to a TOMEE+ server at debug mode:</p>
+            <pre>      &lt;plugin&gt;
         &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
         &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.7.1&lt;/version&gt;
@@ -800,8 +480,8 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
         &lt;/configuration&gt;
       &lt;/plugin&gt;
 </pre><p>
-	4. Following maven dependencies are added to the project. Log4j is the usual logging library. Javax servlet, websocket and JMS are needed for server-side setup. GSON is a JSON library.&nbsp;JUnit, and mockito are needed for java testing.&nbsp;Jasmine and Selenium are needed for client-side JS testing:</p>
-<pre>  &lt;dependencies&gt;
+            4. Following maven dependencies are added to the project. Log4j is the usual logging library. Javax servlet, websocket and JMS are needed for server-side setup. GSON is a JSON library.&nbsp;JUnit, and mockito are needed for java testing.&nbsp;Jasmine and Selenium are needed for client-side JS testing:</p>
+            <pre>  &lt;dependencies&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;log4j&lt;/groupId&gt;
 		&lt;artifactId&gt;log4j&lt;/artifactId&gt;
@@ -853,14 +533,14 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
 	&lt;/dependency&gt;
  &lt;/dependencies&gt;
 </pre><h4>Next, let's take a look at the client-side...</h4><p>
-	1) We will start out with HTML for the Producer page:</p><p>
-	<img src="http://handmadebot.com/uploads/Producer.png" alt=""></p><p style="margin-left: 20px;">
-	We include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple form with a text area and submit button. Text area is required for the form and the button is disabled unless the form text area has something in it. On the bottom of the form, we have a small space for feedback from the server:</p><p style="margin-left: 20px;"></p><pre>&lt;!DOCTYPE html&gt;
+            1) We will start out with HTML for the Producer page:</p><p>
+            <img src="http://handmadebot.com/uploads/Producer.png" alt=""></p><p style="margin-left: 20px;">
+            We include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple form with a text area and submit button. Text area is required for the form and the button is disabled unless the form text area has something in it. On the bottom of the form, we have a small space for feedback from the server:</p><p style="margin-left: 20px;"></p><pre>&lt;!DOCTYPE html&gt;
 &lt;html ng-app="producerApp"&gt;
 &lt;head&gt;
  &lt;meta charset="ISO-8859-1"&gt;
  &lt;title&gt;Producer&lt;/title&gt;
- &lt;script 
+ &lt;script
  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
  &gt;&lt;/script&gt;
 &lt;/head&gt;
@@ -873,7 +553,7 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
    &lt;/textarea&gt;
    &lt;/p&gt;
    &lt;p&gt;
-   &lt;button type="submit" 
+   &lt;button type="submit"
    ng-disabled="produceForm.$pristine ||!produceForm.$dirty"
    &gt;Produce&lt;/button&gt;
    &lt;/p&gt;
@@ -885,15 +565,15 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre><p>
-	2) Next, let's take a look at HTML for the Consumer page:</p><p>
-	<img src="http://handmadebot.com/uploads/Consumer.png"></p><p>
-	Again, we include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple read-only text area where messages we listen to will show up:</p>
-<pre>&lt;!DOCTYPE html&gt;
+            2) Next, let's take a look at HTML for the Consumer page:</p><p>
+            <img src="http://handmadebot.com/uploads/Consumer.png"></p><p>
+            Again, we include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple read-only text area where messages we listen to will show up:</p>
+            <pre>&lt;!DOCTYPE html&gt;
 &lt;html ng-app="consumerApp"&gt;
 &lt;head&gt;
  &lt;meta charset="ISO-8859-1"&gt;
  &lt;title&gt;Consumer&lt;/title&gt;
- &lt;script 
+ &lt;script
  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
  &gt;&lt;/script&gt;
 &lt;/head&gt;
@@ -910,20 +590,20 @@ Let's first start out by describing the maven setup of the project...</h4><ol>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre><p>
-	3) Next, we move onto Angular.JS for the Producer page:</p><p>
-	Here is the producer angular app:</p>
-<pre>/**
+            3) Next, we move onto Angular.JS for the Producer page:</p><p>
+            Here is the producer angular app:</p>
+            <pre>/**
  * Producer App
  */
 var app = angular.module("producerApp", []);
 </pre><p>
-	...and the producer controller which talks to the JMS producer servlet to send the message and get a feedback of message receipt:</p>
-<pre>/**
+            ...and the producer controller which talks to the JMS producer servlet to send the message and get a feedback of message receipt:</p>
+            <pre>/**
  * Producer Controller
  */
 app.controller("producerCtrl", function($scope, $http, $location) {
-	$scope.jmsMode = "PUBLISH_TO_TOPIC"; 
-	$scope.jpsUrl = 
+	$scope.jmsMode = "PUBLISH_TO_TOPIC";
+	$scope.jpsUrl =
 	 "http://localhost:"+$location.port()+"/_testing_/JPS/produce.do";
 	$scope.message = "";
 	$scope.feedback = "";
@@ -941,19 +621,19 @@ app.controller("producerCtrl", function($scope, $http, $location) {
 	};
 });
 </pre><p>
-	4) On the consumer client side we have the following Angular.JS:</p><p>
-	The consumer app:</p>
-<pre>/**
+            4) On the consumer client side we have the following Angular.JS:</p><p>
+            The consumer app:</p>
+            <pre>/**
  * Consumer App
  */
 var app = angular.module("consumerApp", []);
 </pre><p>
-	...and the consumer controller that establishes a web socket connection to the message consumer server endpoint to listen to any messages:</p>
-<pre>/**
+            ...and the consumer controller that establishes a web socket connection to the message consumer server endpoint to listen to any messages:</p>
+            <pre>/**
  * Consumer Controller
  */
 app.controller("consumerCtrl", function($scope, $location) {
-	$scope.endpointUrl = 
+	$scope.endpointUrl =
 	 "ws://localhost:"+$location.port()+"/_testing_/endpoint";
 	$scope.message = "";
 	var webSocket = new WebSocket($scope.endpointUrl);
@@ -967,7 +647,7 @@ app.controller("consumerCtrl", function($scope, $location) {
 	webSocket.onmessage = function(event) {
 		if (event && event.data) {
 			var jsonObj = JSON.parse(event.data);
-			$scope.message = $scope.message + '\n' 
+			$scope.message = $scope.message + '\n'
 				+ jsonObj.timeStamp + ': '+ jsonObj.msg;
 			$scope.$apply();
 		}
@@ -978,8 +658,8 @@ app.controller("consumerCtrl", function($scope, $location) {
 	});
 });
 </pre><h4>Now, for the server-side...</h4><p>
-	1) The JMS producer servlet is a simple servlet that defines a JMS topic and a connection factory resources (via TOMEE+ injection binding).&nbsp;</p>
-<pre>public final class JmsProducerServlet extends HttpServlet {
+            1) The JMS producer servlet is a simple servlet that defines a JMS topic and a connection factory resources (via TOMEE+ injection binding).&nbsp;</p>
+            <pre>public final class JmsProducerServlet extends HttpServlet {
 ...
 	@Resource(name = "foo")
 	private Topic fooTopic;
@@ -987,76 +667,76 @@ app.controller("consumerCtrl", function($scope, $location) {
 	private ConnectionFactory jmsConnFactory;
 ...
 </pre><p style="margin-left: 20px;">
-	On a POST from the client side:&nbsp;</p>
-<pre>   @Override
+            On a POST from the client side:&nbsp;</p>
+            <pre>   @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException
    {
    ...
 </pre><p style="margin-left: 20px;">
-	a) Creates/starts a JMS connection</p>
-<pre>	jmsConn = jmsConnFactory.createConnection();
+            a) Creates/starts a JMS connection</p>
+            <pre>	jmsConn = jmsConnFactory.createConnection();
 	jmsConn.start();
 </pre><p style="margin-left: 20px;">
-	b) Creates a JMS session (no transaction, auto acknowledge message sent)</p>
-<pre>	jmsSession = 
+            b) Creates a JMS session (no transaction, auto acknowledge message sent)</p>
+            <pre>	jmsSession =
 	  jmsConn.createSession(false,Session.AUTO_ACKNOWLEDGE);
 </pre><p style="margin-left: 20px;">
-	c) Parses the JSON request (via Gson) to extract message to be sent</p>
-<pre>	final Request jsonReq = 
+            c) Parses the JSON request (via Gson) to extract message to be sent</p>
+            <pre>	final Request jsonReq =
 		gson.fromJson(req.getReader(), Request.class);
 </pre><p style="margin-left: 20px;">
-	d) Creates a non-persistent message producer for the JMS topic</p>
-<pre>	final MessageProducer producer = 
+            d) Creates a non-persistent message producer for the JMS topic</p>
+            <pre>	final MessageProducer producer =
 		jmsSession.createProducer(fooTopic);
 	producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 </pre><p style="margin-left: 20px;">
-	e) Creates/sends the JMS message envelope and put the message in that was extracted</p>
-<pre>	// Create a message
+            e) Creates/sends the JMS message envelope and put the message in that was extracted</p>
+            <pre>	// Create a message
 	final TextMessage message = jmsSession.createTextMessage(msg);
 	// Tell the producer to send the message
 	producer.send(message);
 </pre><p style="margin-left: 20px;">
-	f) Returns a feedback to caller</p>
-<pre>	//Write back ack to response
+            f) Returns a feedback to caller</p>
+            <pre>	//Write back ack to response
 	pw.println(SUCCESS_MSG);
 </pre><p>
-	2) The JMS consumer server endpoint also utilizes TOMEE+ binding to create the same JMS topic by name and a connection factory resource:</p>
-<pre>@ServerEndpoint(value = "/endpoint")
+            2) The JMS consumer server endpoint also utilizes TOMEE+ binding to create the same JMS topic by name and a connection factory resource:</p>
+            <pre>@ServerEndpoint(value = "/endpoint")
 public final class JmsConsumerServerEndPoint {
-...	
+...
 	@Resource(name = "foo")
 	private Topic fooTopic;
 	@Resource
 	private ConnectionFactory jmsConnFactory;
 ...
 </pre><p style="margin-left: 20px;">
-	a) On a web socket open request from the client-side:</p>
-<pre>    @OnOpen
+            a) On a web socket open request from the client-side:</p>
+            <pre>    @OnOpen
     public void onOpen(final Session session) {
 </pre><p style="margin-left: 20px;">
-	It creates/starts a JMS connection and session (again no transaction, auto acknowledge message receipt):</p>
-<pre>	jmsConn = jmsConnFactory.createConnection();
+            It creates/starts a JMS connection and session (again no transaction, auto acknowledge message receipt):</p>
+            <pre>	jmsConn = jmsConnFactory.createConnection();
 	jmsConn.start();
-	jmsSession = 
+	jmsSession =
 	 jmsConn.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
 </pre><p style="margin-left: 20px;">
-	b) On a web socket request to listen:</p>
-<pre>    @OnMessage
+            b) On a web socket request to listen:</p>
+            <pre>    @OnMessage
     public String onMessage(final String message, final Session session) {
      ...
      switch (message) {
      case "listen":
 </pre><p style="margin-left: 20px;">
-	It creates a JMS consumer of the topic and waits to receive the message:</p>
-<pre>	// Create a MessageConsumer from the Session for the Topic or Queue
-	final MessageConsumer consumer = 
+            It creates a JMS consumer of the topic and waits to receive the message:</p>
+            <pre>	// Create a MessageConsumer from the Session for the Topic or Queue
+	final MessageConsumer consumer =
 	  jmsSession.createConsumer(fooTopic);
 	// Wait to receive the message
 	final Message msg = consumer.receive();
 </pre><p style="margin-left: 20px;">
-	When there is a JMS message to be consumed, it wraps it up into a JSON response and sends it back to the client:</p>
-<pre>	...
+            When there is a JMS message to be consumed, it wraps it up into a JSON response and sends it back to the client:</p>
+            <pre>	...
         else if (msg instanceof TextMessage)
 	{//Send back msg text to response
 	    resp = new Response((TextMessage)msg);
@@ -1064,8 +744,8 @@ public final class JmsConsumerServerEndPoint {
 	...
 	return new Gson().toJson(resp);
 </pre><p style="margin-left: 20px;">
-	c) It is a good idea to clean up the JMS resources on closing of the web socket:</p>
-<pre>   @OnClose
+            c) It is a good idea to clean up the JMS resources on closing of the web socket:</p>
+            <pre>   @OnClose
    public void onClose(final Session session, final CloseReason closeReason) {
 	...
 	try {
@@ -1083,10 +763,10 @@ public final class JmsConsumerServerEndPoint {
 	catch (JMSException | IOException e) {
 		logger.debug("Problem closing resources", e);
 	}
-   } 
+   }
 </pre><h4>How about some Java Unit Testing...</h4><p>
-	1) We utilize mockito annotations to mock out the JMS communication portion of the JMS producer servlet to test the behavior:</p>
-<pre>@RunWith(MockitoJUnitRunner.class)
+            1) We utilize mockito annotations to mock out the JMS communication portion of the JMS producer servlet to test the behavior:</p>
+            <pre>@RunWith(MockitoJUnitRunner.class)
 public class TestJmsProducerServlet {
 	@Mock(name = "jmsConnFactory")
 	private ConnectionFactory mockJmsConnFactory;
@@ -1108,20 +788,20 @@ public class TestJmsProducerServlet {
 		Mockito
 		.when(mockJmsConnFactory.createConnection())
 		.thenReturn(mockJmsConn);
-		
+
 		Mockito
 		.when(mockJmsConn.createSession(
 			Mockito.anyBoolean(), Mockito.anyInt()))
 		.thenReturn(mockJmsSession);
-		
+
 		Mockito.when(mockJmsSession.createProducer(
 			Mockito.any(Destination.class)))
 		.thenReturn(mockProducer);
 	}
 	...
 </pre><p>
-	2) Same goes for the JMS consumer endpoint:</p>
-<pre>@RunWith(MockitoJUnitRunner.class)
+            2) Same goes for the JMS consumer endpoint:</p>
+            <pre>@RunWith(MockitoJUnitRunner.class)
 public class TestJmsConsumerServerEndPoint {
 	@Mock(name = "jmsConnFactory")
 	private ConnectionFactory mockJmsConnFactory;
@@ -1133,9 +813,9 @@ public class TestJmsConsumerServerEndPoint {
 	private MessageConsumer mockConsumer;
 	...
 </pre><h4>How about some Javascript Jasmine Testing...</h4><p>
-	We utilize angular-mocks.js to mock out the angular client/server communication:</p>
-<pre>/**
- * Testing client-side producer 
+            We utilize angular-mocks.js to mock out the angular client/server communication:</p>
+            <pre>/**
+ * Testing client-side producer
  */
 describe('Producer Controller', function() {
 	var $httpBackend, $rootScope, createController;
@@ -1145,7 +825,7 @@ describe('Producer Controller', function() {
 		$httpBackend = $injector.get('$httpBackend');
 		// Get hold of a scope (i.e. the root scope)
 		$rootScope = $injector.get('$rootScope');
-		// The $controller service is used 
+		// The $controller service is used
 		//to create instances of controllers
 		var $controller = $injector.get('$controller');
 		createController = function() {
@@ -1158,8 +838,8 @@ describe('Producer Controller', function() {
 		$httpBackend.verifyNoOutstandingRequest();
 	});
 </pre><p>
-	Here is a test of the post the message to producer servlet:</p>
-<pre>	it('should send a successful post message to JMS Producer Servlet (JPS)', function() {
+            Here is a test of the post the message to producer servlet:</p>
+            <pre>	it('should send a successful post message to JMS Producer Servlet (JPS)', function() {
 		var testToken = 'TESTING!!';
 		$httpBackend.expectPOST(testToken
 			, {mode : testToken, msg: testToken})
@@ -1174,53 +854,87 @@ describe('Producer Controller', function() {
 		   .toEqual("Success: "+testToken);
 	});
 </pre><h4>You can download a compressed version of the whole project&nbsp;<a href="uploads/AmqProofOfConcept.zip">here</a>.</h4><h4>How do you run it? Depends on the IDE, I use Eclipse maven launcher to package it:</h4><p>
-	<img src="uploads/EclipsePackage.png" style="width: 673px;"></p><h4>... and here is my launcher to start TOMEE+ in debug mode (listening to any changes in source code to reload):</h4><p>
-	<img src="uploads/EclipseTomeeDebug.png" style="width: 675px;"></p></p>
-
-                        
-                        <div class="clear"></div>
-                        <div class="post_meta">
-                            <ul class="info">
-                                <li class="date has_icon icon_posted"><div class="icon"></div>
-                                    May 20</li>
-                            </ul>
-                            <span class="permalink has_icon icon_permalink"><div class="icon"></div><a href="http://handmadebot.com/?action=view&amp;url=active-mq-proof-of-concept">Permalink</a></span>
-                            
-                            <span class="tags has_icon icon_tags"><div class="icon"></div>
-                            Tags: <a href="http://handmadebot.com/?action=tag&amp;name=amq" rel="tag">amq</a> <a href="http://handmadebot.com/?action=tag&amp;name=activemq" rel="tag">activemq</a> <a href="http://handmadebot.com/?action=tag&amp;name=active-mq" rel="tag">active mq</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomee" rel="tag">tomee</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomcat-ee" rel="tag">tomcat ee</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomee" rel="tag">tomee+</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomee-plus" rel="tag">tomee plus</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomcat-ee-plus" rel="tag">tomcat ee plus</a> <a href="http://handmadebot.com/?action=tag&amp;name=jms" rel="tag">jms</a> <a href="http://handmadebot.com/?action=tag&amp;name=jms-producer-consumer" rel="tag">jms producer consumer</a> <a href="http://handmadebot.com/?action=tag&amp;name=jms-topic" rel="tag">jms topic</a> <a href="http://handmadebot.com/?action=tag&amp;name=jms-queue" rel="tag">jms queue</a> <a href="http://handmadebot.com/?action=tag&amp;name=tomee-maven-plugin" rel="tag">tomee maven plugin</a> <a href="http://handmadebot.com/?action=tag&amp;name=jasmine-maven-plugin" rel="tag">jasmine maven plugin</a> <a href="http://handmadebot.com/?action=tag&amp;name=junit" rel="tag">junit</a> <a href="http://handmadebot.com/?action=tag&amp;name=mockito" rel="tag">mockito</a> <a href="http://handmadebot.com/?action=tag&amp;name=angular" rel="tag">angular</a> <a href="http://handmadebot.com/?action=tag&amp;name=angularjs" rel="tag">angular.js</a> <a href="http://handmadebot.com/?action=tag&amp;name=angularjs" rel="tag">angular.JS</a> <a href="http://handmadebot.com/?action=tag&amp;name=angular-mocks" rel="tag">angular-mocks</a> <a href="http://handmadebot.com/?action=tag&amp;name=angular-mocksjs" rel="tag">angular-mocks.js</a> <a href="http://handmadebot.com/?action=tag&amp;name=websocket" rel="tag">websocket</a> <a href="http://handmadebot.com/?action=tag&amp;name=endpoint" rel="tag">endpoint</a> <a href="http://handmadebot.com/?action=tag&amp;name=serverendpoint" rel="tag">serverendpoint</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade" rel="tag">handmade</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmade-coding" rel="tag">handmade coding</a> <a href="http://handmadebot.com/?action=tag&amp;name=handmadebot" rel="tag">handmadebot</a> <a href="http://handmadebot.com/?action=tag&amp;name=angularjs-app" rel="tag">angularjs app</a> <a href="http://handmadebot.com/?action=tag&amp;name=testing-angularjs" rel="tag">testing angularjs</a> <a href="http://handmadebot.com/?action=tag&amp;name=jasmine-javascript-testing" rel="tag">jasmine javascript testing</a> <a href="http://handmadebot.com/?action=tag&amp;name=jms-connection-factory" rel="tag">jms connection factory</a> <a href="http://handmadebot.com/?action=tag&amp;name=angularjs-class" rel="tag">angularjs class</a> <a href="http://handmadebot.com/?action=tag&amp;name=angular-library" rel="tag">angular library</a> <a href="http://handmadebot.com/?action=tag&amp;name=mock-java" rel="tag">mock java</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring-test" rel="tag">spring test</a> <a href="http://handmadebot.com/?action=tag&amp;name=spring" rel="tag">spring</a>
-                            </span>
-                            
-                        </div>
-                        <div class="clear"></div>
-                        
-                        <div class="clear"></div>
-                    </div>
-                    <div class="post_shadow"></div>
-                </div>
-
-                    
-
-                <div class="clear"></div>
-                <div class="page_nav">
-                    
-                    
-                    
-                </div>
-                </div>
-                <div class="clear"></div>
-                <div id="footer">
-                <a href="//plus.google.com/u/0/114955677919964949830?prsrc=3" rel="publisher" target="_top" style="text-decoration:none;"><img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;"/></a>
-                <a href="https://twitter.com/Ozgur1234" class="twitter-follow-button" data-show-count="false" data-size="small">Follow</a>
-                </div>
-            </div>
+            <img src="uploads/EclipsePackage.png" style="width: 673px;"></p><h4>... and here is my launcher to start TOMEE+ in debug mode (listening to any changes in source code to reload):</h4><p>
+            <img src="uploads/EclipseTomeeDebug.png" style="width: 675px;"></p></p>
+            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
+          </article>
         </div>
-        
-        
-        <!-- Body Javascript -->
-        <!-- Google -->
-        <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+      </div>
+    </div>
 
-    </body>
+    <hr>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+      <div class="container">
+        <h2 class="text-center">About</h2>
+        <hr class="star-light">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p>Producing high-end quality, fully-tested software units based on constant collaboration
+              with our customers to deduce exact specifications.
+            </p>
+          </div>
+          <div class="col-lg-4 ml-auto">
+            <p>Striving to understand the business workflows to
+              design custom-tailored software to fit the needs from management/owner level to end-users of our clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/Ozgur1234">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="http://www.linkedin.com/in/ozguramac">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/ozguramac">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; Derin Works LLC 2017</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/clean-blog.min.js"></script>
+
+    <!-- Body Javascript -->
+    <!-- Google -->
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+  </body>
+
 </html>

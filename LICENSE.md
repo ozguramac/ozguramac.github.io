@@ -1,1 +1,0 @@
-Ozgur Amac, All rights reserved 
