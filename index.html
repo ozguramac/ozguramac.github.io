@@ -83,7 +83,7 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div id="banner">
+        <div class="col-lg-8 col-md-10 mx-auto">
           <!-- Google Adsense -->
           <!-- First Handmadebot Ad Unit -->
           <ins class="adsbygoogle"
@@ -260,7 +260,7 @@ public class GoogDrvSvcProxyImpl implements GoogDrvSvcProxy
             <p>
               Dozer's map-id attribute has to be unique across, but we can still use map-id to define mapping to multiple destinations of the same source. Here is a method that is trying achieve this:
             </p>
-            <pre>
+<pre>
 @Component("theMapper")
 public class TheMapper {
 	@Resource
@@ -282,7 +282,7 @@ public class TheMapper {
             <p>
               How do the dozer mapping configuration look like? This is for the first destination type (dozer-mapping-A.xml):
             </p>
-            <pre>
+<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mappings xmlns="http://dozer.sourceforge.net"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -310,7 +310,7 @@ public class TheMapper {
             <p>
               ...And the one for the second destination type&nbsp;(dozer-mapping-B.xml):
             </p>
-            <pre>
+<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mappings xmlns="http://dozer.sourceforge.net"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -339,7 +339,7 @@ public class TheMapper {
             <p>
               I have used spring to hook up the XML mappings to Java source (spring-beans.xml):
             </p>
-            <pre>
+<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -364,7 +364,7 @@ public class TheMapper {
             <p>
               I have used testng spring context test to connect the dots and test this out:
             </p>
-            <pre>
+<pre>
 @ContextConfiguration("classpath:spring-beans.xml")
 public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
 	@Autowired
@@ -416,7 +416,7 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
       &lt;/plugin&gt;
 </pre><p>
             2. a) Jasmine Maven plugin simplifies integrating JS testing into maven test lifecycle goal (Notice the executions tag):</p>
-            <pre>      &lt;plugin&gt;
+<pre>      &lt;plugin&gt;
         &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
         &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.3.1.5&lt;/version&gt;
@@ -430,7 +430,7 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
       &lt;/plugin&gt;
 </pre><p>
             2. b) We add some custom configuration to Jasmine Maven plugin to support Angular testing with a selenium chrome driver&nbsp;(angular-mocks helps with mocking the angular plumbing), and we have a customized JS source directory (default is src/main/javascript):</p>
-            <pre>      &lt;plugin&gt;
+<pre>      &lt;plugin&gt;
         &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
         &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.3.1.5&lt;/version&gt;
@@ -455,7 +455,7 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
       &lt;/plugin&gt;
 </pre><p>
             3. a) Last piece is a TOMEE maven plugin that helps with packaging/deploying to a TOMEE server and starting debugging</p>
-            <pre>      &lt;plugin&gt;
+<pre>      &lt;plugin&gt;
         &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
         &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;1.7.1&lt;/version&gt;
@@ -481,7 +481,7 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
       &lt;/plugin&gt;
 </pre><p>
             4. Following maven dependencies are added to the project. Log4j is the usual logging library. Javax servlet, websocket and JMS are needed for server-side setup. GSON is a JSON library.&nbsp;JUnit, and mockito are needed for java testing.&nbsp;Jasmine and Selenium are needed for client-side JS testing:</p>
-            <pre>  &lt;dependencies&gt;
+<pre>  &lt;dependencies&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;log4j&lt;/groupId&gt;
 		&lt;artifactId&gt;log4j&lt;/artifactId&gt;
@@ -592,7 +592,7 @@ public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
 </pre><p>
             3) Next, we move onto Angular.JS for the Producer page:</p><p>
             Here is the producer angular app:</p>
-            <pre>/**
+<pre>/**
  * Producer App
  */
 var app = angular.module("producerApp", []);
@@ -629,7 +629,7 @@ app.controller("producerCtrl", function($scope, $http, $location) {
 var app = angular.module("consumerApp", []);
 </pre><p>
             ...and the consumer controller that establishes a web socket connection to the message consumer server endpoint to listen to any messages:</p>
-            <pre>/**
+<pre>/**
  * Consumer Controller
  */
 app.controller("consumerCtrl", function($scope, $location) {
@@ -858,6 +858,18 @@ describe('Producer Controller', function() {
             <img src="uploads/EclipseTomeeDebug.png" style="width: 675px;"></p></p>
             <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
           </article>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <!-- Google Adsense -->
+          <!-- Second Handmadebot Ad Unit (in article)-->
+          <ins class="adsbygoogle"
+               style="display:block; text-align:center;"
+               data-ad-layout="in-article"
+               data-ad-format="fluid"
+               data-ad-client="ca-pub-1096775848340776"
+               data-ad-slot="3746612160"></ins>
         </div>
       </div>
     </div>
