@@ -4,9 +4,9 @@
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Handmade Bot Blogging Site">
+    <meta name="author" content="Ozgur V Amac">
 
     <title>Handmade Coding</title>
 
@@ -20,6 +20,36 @@
 
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
+    <style>
+        code, samp, kbd {
+            font-family: "Courier New", Courier, monospace, sans-serif;
+            text-align: left;
+            color: #555;
+        }
+        pre code {
+            line-height: 1.6em;
+            font-size: 11px;
+        }
+        pre {
+            padding: 0.1em 0.5em 0.3em 0.7em;
+            border-left: 11px solid #ccc;
+            margin: 1.7em 0 1.7em 0.3em;
+            overflow: auto;
+            width: 93%;
+        }
+        /* target IE7 and IE6 */
+        *:first-child+html pre {
+            padding-bottom: 2em;
+            overflow-y: hidden;
+            overflow: visible;
+            overflow-x: auto;
+        }
+        * html pre {
+            padding-bottom: 2em;
+            overflow: visible;
+            overflow-x: auto;
+        }
+    </style>
 
     <!-- Google -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -93,24 +123,26 @@
                data-ad-format="auto">
           </ins>
         </div>
+      </div>
+      <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <article>
             <h2 class="title">How to use Google Drive REST API for document conversion?</h2>
-            <p><h4>Google Drive Authorization:</h4>
-            <p>	First we need to follow examples at&nbsp;	<a
-                    href="https://developers.google.com/drive/web/auth/web-server">drive authorization server-side</a> to build a nice proxy for authorization:</p>
- <pre>
+            <h4>Google Drive Authorization:</h4>
+            <p>	First we need to follow examples at
+                <a href="https://developers.google.com/drive/web/auth/web-server">drive authorization server-side</a>
+                to build a nice proxy for authorization:
+            </p>
+            <small>
+              <pre>
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 
-import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
-import com.google.api.client.extensions.java6.auth.oauth2.VerificationCodeReceiver;
-import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.auth.*;
+import com.google.api.client.extensions.java6.auth.*;
+import com.google.api.client.extensions.jetty.auth.*;
+import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.oz.drv.api.GoogDrvAuthProxy;
@@ -118,58 +150,59 @@ import com.oz.drv.api.GoogDrvConnConfig;
 
 public class GoogDrvAuthProxyImpl implements GoogDrvAuthProxy
 {
-	/**
-	 * Follow instructions at:
-	 * &lt;a href="https://developers.google.com/drive/web/auth/web-server"&gt;Implementing Server-Side Authorization&lt;/a&gt;
-	 * Choose "Installed application" option.
-	 */
-	private static final String PATH_CLIENT_SECRET_JSON =
-		"./client_secret.json";
-	private final GoogDrvConnConfig drvConnConfig;
-	public GoogDrvAuthProxyImpl(final GoogDrvConnConfig drvConnConfig)
-	{
-		this.drvConnConfig = drvConnConfig;
-	}
-	@Override
-	public Credential authorize(final String user)
-	 throws IOException, GeneralSecurityException {
-		final JsonFactory jsonFactory = drvConnConfig.getJsonFactory();
-		final GoogleClientSecrets clientSecrets =
-			GoogleClientSecrets.load(jsonFactory
-				, new InputStreamReader(
-					ClassLoader.getSystemResourceAsStream(
-						PATH_CLIENT_SECRET_JSON)));
-		final AuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-				 drvConnConfig.getTransport()
-				,jsonFactory
-				,clientSecrets
-				,drvConnConfig.getScopes()
-			)
-			.setDataStoreFactory(drvConnConfig.getDataStoreFactory())
-			.setAccessType("offline")
-			.build();
-		final VerificationCodeReceiver rcvr = new LocalServerReceiver();
-		return new AuthorizationCodeInstalledApp(flow, rcvr).authorize(user);
-	}
-	@Override
-	public HttpTransport getTransport() throws GeneralSecurityException, IOException {
-		return drvConnConfig.getTransport();
-	}
-	@Override
-	public JsonFactory getJsonFactory() {
-		return drvConnConfig.getJsonFactory();
-	}
+ /**
+ * Follow instructions at:
+ * Google Drive: Implementing Server-Side Authorization
+ * Choose "Installed application" option.
+ */
+ private static final String PATH_CLIENT_SECRET_JSON =
+  "./client_secret.json";
+ private final GoogDrvConnConfig drvConnConfig;
+ public GoogDrvAuthProxyImpl(final GoogDrvConnConfig drvConnConfig)
+ {
+  this.drvConnConfig = drvConnConfig;
+ }
+ @Override
+ public Credential authorize(final String user)
+  throws IOException, GeneralSecurityException {
+  final JsonFactory jsonFactory = drvConnConfig.getJsonFactory();
+  final GoogleClientSecrets clientSecrets =
+   GoogleClientSecrets.load(jsonFactory
+   , new InputStreamReader(
+      ClassLoader.getSystemResourceAsStream(
+        PATH_CLIENT_SECRET_JSON)));
+  final AuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+     drvConnConfig.getTransport()
+    ,jsonFactory
+    ,clientSecrets
+    ,drvConnConfig.getScopes()
+  )
+  .setDataStoreFactory(drvConnConfig.getDataStoreFactory())
+  .setAccessType("offline")
+  .build();
+  final VerificationCodeReceiver rcvr = new LocalServerReceiver();
+  return new AuthorizationCodeInstalledApp(flow, rcvr).authorize(user);
+ }
+ @Override
+ public HttpTransport getTransport() throws GeneralSecurityException, IOException {
+  return drvConnConfig.getTransport();
+ }
+ @Override
+ public JsonFactory getJsonFactory() {
+  return drvConnConfig.getJsonFactory();
+ }
 }
-</pre>
-            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
-          </article>
-          <hr>
-          <article>
-            <h2 class="title">How to use Google Drive REST API for document conversion?</h2>
-            <h4>Using Google Drive API for file conversion:</h4><p>
-            Then we can build an example following guide at
-            <a href="https://developers.google.com/drive/web/quickstart/java">drive quick-start guide</a> and some tips at&nbsp;<a href="https://developers.google.com/drive/web/manage-downloads">downloading files using drive API</a>:</p>
-            <pre>import java.io.File;
+              </pre>
+            </small>
+            <h4>Using Google Drive API for file conversion:</h4>
+            <p>
+                Then we can build an example following guide at
+                <a href="https://developers.google.com/drive/web/quickstart/java">drive quick-start guide</a> and some
+                tips at <a href="https://developers.google.com/drive/web/manage-downloads">downloading files using drive API</a>:
+            </p>
+            <small>
+                <pre>
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
@@ -183,686 +216,907 @@ import com.oz.drv.api.GoogDrvAuthProxy;
 import com.oz.drv.api.GoogDrvSvcProxy;
 public class GoogDrvSvcProxyImpl implements GoogDrvSvcProxy
 {
-	private final String appName;
-	private final GoogDrvAuthProxy drvAuthProxy;
-	public GoogDrvSvcProxyImpl(final String appName, final GoogDrvAuthProxy drvAuthProxy)
-	{
-		this.appName = appName;
-		this.drvAuthProxy = drvAuthProxy;
-	}
-	private Drive build(final HttpTransport transport, final Credential credential) {
-		return new Drive.Builder(transport, drvAuthProxy.getJsonFactory(), credential)
-			.setApplicationName(appName)
-			.build();
-	}
-	@Override
-	public String insert(final String user, final File file, final String mimeType)
-	 throws IOException, GeneralSecurityException
-	{
-		final HttpTransport transport = drvAuthProxy.getTransport();
-		final Credential cred = drvAuthProxy.authorize(user);
-		final AbstractInputStreamContent mediaContent = new FileContent(mimeType, file);
-		final com.google.api.services.drive.model.File content =
-			new com.google.api.services.drive.model.File()
-			.setTitle(file.getName())
-		;
-		return build(transport, cred)
-			.files()
-			.insert(content, mediaContent)
-			.setConvert(true)
-			.execute()
-			.getId()
-		;
-	}
-	@Override
-	public InputStream get(final String user, final String fileId, final String mimeType)
-	 throws IOException, GeneralSecurityException
-	{
-		final HttpTransport transport = drvAuthProxy.getTransport();
-		final Credential cred = drvAuthProxy.authorize(user);
-		final String downloadUrl = build(transport, cred)
-			.files()
-			.get(fileId)
-			.execute()
-			.getExportLinks()
-			.get(mimeType)
-		;
-		if (null == downloadUrl) {
-			return null;
-		}
-		return build(transport, cred)
-			.getRequestFactory()
-			.buildGetRequest(new GenericUrl(downloadUrl))
-			.execute()
-			.getContent()
-		;
-	}
-	@Override
-	public void delete(final String user, final String fileId)
-	 throws IOException, GeneralSecurityException
-	{
-		final HttpTransport transport = drvAuthProxy.getTransport();
-		final Credential cred = drvAuthProxy.authorize(user);
-		build(transport, cred)
-		.files()
-		.delete(fileId)
-		.execute()
-		;
-	}
+ private final String appName;
+ private final GoogDrvAuthProxy drvAuthProxy;
+ public GoogDrvSvcProxyImpl(final String appName, final GoogDrvAuthProxy drvAuthProxy)
+ {
+  this.appName = appName;
+  this.drvAuthProxy = drvAuthProxy;
+ }
+ private Drive build(final HttpTransport transport, final Credential credential) {
+  return new Drive.Builder(transport, drvAuthProxy.getJsonFactory(), credential)
+  .setApplicationName(appName)
+  .build();
+ }
+ @Override
+ public String insert(final String user, final File file, final String mimeType)
+  throws IOException, GeneralSecurityException
+ {
+  final HttpTransport transport = drvAuthProxy.getTransport();
+  final Credential cred = drvAuthProxy.authorize(user);
+  final AbstractInputStreamContent mediaContent = new FileContent(mimeType, file);
+  final com.google.api.services.drive.model.File content =
+   new com.google.api.services.drive.model.File()
+  .setTitle(file.getName())
+  ;
+  return build(transport, cred)
+  .files()
+  .insert(content, mediaContent)
+  .setConvert(true)
+  .execute()
+  .getId()
+  ;
+ }
+ @Override
+ public InputStream get(final String user, final String fileId, final String mimeType)
+  throws IOException, GeneralSecurityException
+ {
+  final HttpTransport transport = drvAuthProxy.getTransport();
+  final Credential cred = drvAuthProxy.authorize(user);
+  final String downloadUrl = build(transport, cred)
+   .files()
+   .get(fileId)
+   .execute()
+   .getExportLinks()
+   .get(mimeType)
+  ;
+  if (null == downloadUrl) {
+   return null;
+  }
+  return build(transport, cred)
+  .getRequestFactory()
+  .buildGetRequest(new GenericUrl(downloadUrl))
+  .execute()
+  .getContent()
+  ;
+ }
+ @Override
+ public void delete(final String user, final String fileId)
+  throws IOException, GeneralSecurityException
+ {
+  final HttpTransport transport = drvAuthProxy.getTransport();
+  final Credential cred = drvAuthProxy.authorize(user);
+  build(transport, cred)
+   .files()
+   .delete(fileId)
+   .execute()
+  ;
+ }
 }
-</pre>
-            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
-          </article>
-          <hr>
-          <article>
-            <h2 class="title">How to use Dozer map-id for multiple destinations?</h2>
-            <p><h4>Java source:</h4>
-            <p>
-              Dozer's map-id attribute has to be unique across, but we can still use map-id to define mapping to multiple destinations of the same source. Here is a method that is trying achieve this:
-            </p>
-<pre>
-@Component("theMapper")
-public class TheMapper {
-	@Resource
-	private Mapper dozerMapper;
-	public SomeDestinationBean map(
-		 final SomeSrcBean ssb
-		,final AnotherSrcBean asb
-		,final String destinationType)
-	{
-		final SomeDestinationBean sdb = new SomeDestinationBean();
-		//Do mapping. Note that map id has to be unique
-		dozerMapper.map(ssb, sdb, destinationType+"_ss2sd");
-		dozerMapper.map(asb, sdb, destinationType+"_as2sd");
-		return sdb;
-	}
-}
-</pre>
-            <h4>Dozer XML mappings:</h4>
-            <p>
-              How do the dozer mapping configuration look like? This is for the first destination type (dozer-mapping-A.xml):
-            </p>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;mappings xmlns="http://dozer.sourceforge.net"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="
-	http://dozer.sourceforge.net
-	http://dozer.sourceforge.net/schema/beanmapping.xsd"
-	&lt;mapping map-id="destA_ss2sd"&gt;
-		&lt;class-a&gt;SomeSrcBean&lt;/class-a&gt;
-		&lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
-		&lt;field&gt;
-			&lt;a&gt;someSrcStr&lt;/a&gt;
-			&lt;b&gt;someDestinationStr&lt;/b&gt;
-		&lt;/field&gt;
-	&lt;/mapping&gt;
-	&lt;mapping map-id="destA_as2sd"&gt;
-		&lt;class-a&gt;AnotherSrcBean&lt;/class-a&gt;
-		&lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
-		&lt;field&gt;
-			&lt;a&gt;anotherSrcDbl&lt;/a&gt;
-			&lt;b&gt;someDestinationDbl&lt;/b&gt;
-		&lt;/field&gt;
-	&lt;/mapping&gt;
-&lt;/mappings&gt;
-</pre>
-            <p>
-              ...And the one for the second destination type&nbsp;(dozer-mapping-B.xml):
-            </p>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;mappings xmlns="http://dozer.sourceforge.net"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="
-	http://dozer.sourceforge.net
-	http://dozer.sourceforge.net/schema/beanmapping.xsd"
-	&lt;mapping map-id="destB_ss2sd"&gt;
-		&lt;class-a&gt;SomeSrcBean&lt;/class-a&gt;
-		&lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
-		&lt;field&gt;
-			&lt;a&gt;someSrcStr2&lt;/a&gt;
-			&lt;b&gt;someDestinationStr&lt;/b&gt;
-		&lt;/field&gt;
-	&lt;/mapping&gt;
-	&lt;mapping map-id="destB_as2sd"&gt;
-		&lt;class-a&gt;AnotherSrcBean&lt;/class-a&gt;
-		&lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
-		&lt;field&gt;
-			&lt;a&gt;anotherSrcDbl&lt;/a&gt;
-			&lt;b&gt;someDestinationDbl&lt;/b&gt;
-		&lt;/field&gt;
-	&lt;/mapping&gt;
-&lt;/mappings&gt;
-</pre>
-            <h4>Spring configuration:</h4>
-            <p>
-              I have used spring to hook up the XML mappings to Java source (spring-beans.xml):
-            </p>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-&nbsp; &nbsp; http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-&nbsp; &nbsp; http://www.springframework.org/schema/context
-&nbsp; &nbsp; http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-&lt;context:component-scan base-package="com.oz.dozer.mapper"/&gt;
-&lt;context:annotation-config/&gt;
-&lt;bean id="mapper" class="org.dozer.DozerBeanMapper"&gt;
-  &lt;property name="mappingFiles"&gt;
-    &lt;list&gt;
-      &lt;value&gt;dozer-mapping-A.xml&lt;/value&gt;
-      &lt;value&gt;dozer-mapping-B.xml&lt;/value&gt;
-    &lt;/list&gt;
-  &lt;/property&gt;
-&lt;/bean&gt;
-&lt;/beans&gt;
-</pre>
-            <h4>TestNG Spring Run:</h4>
-            <p>
-              I have used testng spring context test to connect the dots and test this out:
-            </p>
-<pre>
-@ContextConfiguration("classpath:spring-beans.xml")
-public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
-	@Autowired
-	private TheMapper theMapper;
-	@Test
-	public void mappingTest() {
-		final SomeSrcBean ssb = new SomeSrcBean();
-		final AnotherSrcBean asb = new AnotherSrcBean();
-		final String someSrcStr = "TESTING!!";
-		final String someSrcStr2 = "TESTING2!!";
-		ssb.setSomeSrcStr(someSrcStr);
-		ssb.setSomeSrcStr2(someSrcStr2);
-		final double anotherSrcDbl = 666.66d;
-		asb.setAnotherSrcDbl(anotherSrcDbl);
-		final SomeDestinationBean sdb1 =
-			theMapper.map(ssb, asb, "destA");
-		AssertJUnit.assertEquals("Some str"
-			, sdb1.getSomeDestinationStr(), someSrcStr);
-		AssertJUnit.assertEquals("Another dbl"
-			, sdb1.getSomeDestinationDbl(), anotherSrcDbl);
-		final SomeDestinationBean sdb2 =
-			theMapper.map(ssb, asb, "destB");
-		AssertJUnit.assertEquals("Some str 2"
-			, sdb2.getSomeDestinationStr(), someSrcStr2);
-		AssertJUnit.assertEquals("Another dbl"
-			, sdb2.getSomeDestinationDbl(), anotherSrcDbl);
-	}
-}
-</pre></p>
-            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
-          </article>
-          <hr>
-          <article>
-            <h2 class="title">
-              Active MQ Proof of Concept
-            </h2>
-
-            <p>
-            This is a proof of concept blog about&nbsp;Active MQ using Tomee+ JMS, Servlet, Endpoint on the server side, and Angular, JS web sockets on the client side. Java testing is done via JUnit, Mockito. Javascript testing is done via Jasmine.
-            Let's first start out by describing the maven setup of the project...
-            1. Maven Compiler plugin (the usual) version 3.1 and the project requires JDK 1.7 and up:</p>
-            <pre>      &lt;plugin&gt;
-        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-        &lt;version&gt;3.1&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;source&gt;1.7&lt;/source&gt;
-          &lt;target&gt;1.7&lt;/target&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-</pre><p>
-            2. a) Jasmine Maven plugin simplifies integrating JS testing into maven test lifecycle goal (Notice the executions tag):</p>
-<pre>      &lt;plugin&gt;
-        &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
-        &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.5&lt;/version&gt;
-        &lt;executions&gt;
-          &lt;execution&gt;
-            &lt;goals&gt;
-              &lt;goal&gt;test&lt;/goal&gt;
-            &lt;/goals&gt;
-          &lt;/execution&gt;
-        &lt;/executions&gt;
-      &lt;/plugin&gt;
-</pre><p>
-            2. b) We add some custom configuration to Jasmine Maven plugin to support Angular testing with a selenium chrome driver&nbsp;(angular-mocks helps with mocking the angular plumbing), and we have a customized JS source directory (default is src/main/javascript):</p>
-<pre>      &lt;plugin&gt;
-        &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
-        &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.5&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;webDriverClassName&gt;
-	   org.openqa.selenium.chrome.ChromeDriver
-	  &lt;/webDriverClassName&gt;
-          &lt;preloadSources&gt;
-            &lt;source&gt;${jquery.load.path}/jquery.js&lt;/source&gt;
-            &lt;source&gt;${angular.load.path}/angular.js&lt;/source&gt;
-            &lt;source&gt;${angular.load.path}/angular-mocks.js&lt;/source&gt;
-          &lt;/preloadSources&gt;
-          &lt;jsSrcDir&gt;${project.basedir}/src/main/webapp/js&lt;/jsSrcDir&gt;
-        &lt;/configuration&gt;
-        &lt;executions&gt;
-          &lt;execution&gt;
-            &lt;goals&gt;
-              &lt;goal&gt;test&lt;/goal&gt;
-            &lt;/goals&gt;
-          &lt;/execution&gt;
-        &lt;/executions&gt;
-      &lt;/plugin&gt;
-</pre><p>
-            3. a) Last piece is a TOMEE maven plugin that helps with packaging/deploying to a TOMEE server and starting debugging</p>
-<pre>      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
-        &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;1.7.1&lt;/version&gt;
-      &lt;/plugin&gt;
-</pre><p style="margin-left: 20px;"></p><p>
-            3. b) We add reload synchronization configuration to TOMEE maven plugin that automates hot code deploy (Java, JS or HTML changes) to a TOMEE+ server at debug mode:</p>
-            <pre>      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
-        &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;1.7.1&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;tomeeVersion&gt;1.7.1&lt;/tomeeVersion&gt;
-          &lt;tomeeClassifier&gt;plus&lt;/tomeeClassifier&gt;
-          &lt;synchronization&gt;
-            &lt;extensions&gt;
-              &lt;extension&gt;.class&lt;/extension&gt;
-              &lt;extension&gt;.js&lt;/extension&gt;
-              &lt;extension&gt;.html&lt;/extension&gt;
-            &lt;/extensions&gt;
-          &lt;/synchronization&gt;
-          &lt;reloadOnUpdate&gt;true&lt;/reloadOnUpdate&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-</pre><p>
-            4. Following maven dependencies are added to the project. Log4j is the usual logging library. Javax servlet, websocket and JMS are needed for server-side setup. GSON is a JSON library.&nbsp;JUnit, and mockito are needed for java testing.&nbsp;Jasmine and Selenium are needed for client-side JS testing:</p>
-<pre>  &lt;dependencies&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;log4j&lt;/groupId&gt;
-		&lt;artifactId&gt;log4j&lt;/artifactId&gt;
-		&lt;version&gt;1.2.17&lt;/version&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;javax.servlet&lt;/groupId&gt;
-		&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
-		&lt;version&gt;3.1.0&lt;/version&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;javax.jms&lt;/groupId&gt;
-		&lt;artifactId&gt;javax.jms-api&lt;/artifactId&gt;
-		&lt;version&gt;2.0.1&lt;/version&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;javax.websocket&lt;/groupId&gt;
-		&lt;artifactId&gt;javax.websocket-api&lt;/artifactId&gt;
-		&lt;version&gt;1.1&lt;/version&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
-		&lt;artifactId&gt;gson&lt;/artifactId&gt;
-		&lt;version&gt;2.3.1&lt;/version&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;junit&lt;/groupId&gt;
-		&lt;artifactId&gt;junit&lt;/artifactId&gt;
-		&lt;version&gt;4.11&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;org.mockito&lt;/groupId&gt;
-		&lt;artifactId&gt;mockito-all&lt;/artifactId&gt;
-		&lt;version&gt;1.10.19&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;com.github.searls&lt;/groupId&gt;
-		&lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;1.3.1.5&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
-		&lt;artifactId&gt;selenium-chrome-driver&lt;/artifactId&gt;
-		&lt;version&gt;2.3.1&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
- &lt;/dependencies&gt;
-</pre><h4>Next, let's take a look at the client-side...</h4><p>
-            1) We will start out with HTML for the Producer page:</p><p>
-            <img src="http://handmadebot.com/uploads/Producer.png" alt=""></p><p style="margin-left: 20px;">
-            We include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple form with a text area and submit button. Text area is required for the form and the button is disabled unless the form text area has something in it. On the bottom of the form, we have a small space for feedback from the server:</p><p style="margin-left: 20px;"></p><pre>&lt;!DOCTYPE html&gt;
-&lt;html ng-app="producerApp"&gt;
-&lt;head&gt;
- &lt;meta charset="ISO-8859-1"&gt;
- &lt;title&gt;Producer&lt;/title&gt;
- &lt;script
- src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
- &gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
- &lt;div ng-controller="producerCtrl"&gt;
-  &lt;form name="produceForm" ng-submit="produce()"&gt;
-   &lt;h2&gt;Message&lt;/h2&gt;
-   &lt;p&gt;
-   &lt;textarea ng-model="message" name="message" rows="25" cols="40" required&gt;
-   &lt;/textarea&gt;
-   &lt;/p&gt;
-   &lt;p&gt;
-   &lt;button type="submit"
-   ng-disabled="produceForm.$pristine ||!produceForm.$dirty"
-   &gt;Produce&lt;/button&gt;
-   &lt;/p&gt;
-  &lt;/form&gt;
-  &lt;div&gt;{{feedback}}&lt;/div&gt;
- &lt;/div&gt;
- &lt;script src="js/producerApp.js"&gt;&lt;/script&gt;
- &lt;script src="js/producerCtrl.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre><p>
-            2) Next, let's take a look at HTML for the Consumer page:</p><p>
-            <img src="http://handmadebot.com/uploads/Consumer.png"></p><p>
-            Again, we include angular library at the head, and add angular app/controller JS at the bottom of HTML body by convention. There is a simple read-only text area where messages we listen to will show up:</p>
-            <pre>&lt;!DOCTYPE html&gt;
-&lt;html ng-app="consumerApp"&gt;
-&lt;head&gt;
- &lt;meta charset="ISO-8859-1"&gt;
- &lt;title&gt;Consumer&lt;/title&gt;
- &lt;script
- src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
- &gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
- &lt;div ng-controller="consumerCtrl"&gt;
-  &lt;h2&gt;Message(s)&lt;/h2&gt;
-  &lt;p&gt;
-  &lt;textarea ng-model="message" name="message" rows="25" cols="40" readonly&gt;
-  &lt;/textarea&gt;
-  &lt;/p&gt;
- &lt;/div&gt;
- &lt;script src="js/consumerApp.js"&gt;&lt;/script&gt;
- &lt;script src="js/consumerCtrl.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre><p>
-            3) Next, we move onto Angular.JS for the Producer page:</p><p>
-            Here is the producer angular app:</p>
-<pre>/**
- * Producer App
- */
-var app = angular.module("producerApp", []);
-</pre><p>
-            ...and the producer controller which talks to the JMS producer servlet to send the message and get a feedback of message receipt:</p>
-            <pre>/**
- * Producer Controller
- */
-app.controller("producerCtrl", function($scope, $http, $location) {
-	$scope.jmsMode = "PUBLISH_TO_TOPIC";
-	$scope.jpsUrl =
-	 "http://localhost:"+$location.port()+"/_testing_/JPS/produce.do";
-	$scope.message = "";
-	$scope.feedback = "";
-	$scope.produce = function() {
-		$http.post($scope.jpsUrl, {
-			 mode : $scope.jmsMode
-			,msg: $scope.message
-		})
-		.success(function(data, status, headers, config){
-			$scope.feedback = "Success: "+data;
-		})
-		.error(function(data, status, headers, config){
-			$scope.feedback = "Error: "+data;
-		});
-	};
-});
-</pre><p>
-            4) On the consumer client side we have the following Angular.JS:</p><p>
-            The consumer app:</p>
-            <pre>/**
- * Consumer App
- */
-var app = angular.module("consumerApp", []);
-</pre><p>
-            ...and the consumer controller that establishes a web socket connection to the message consumer server endpoint to listen to any messages:</p>
-<pre>/**
- * Consumer Controller
- */
-app.controller("consumerCtrl", function($scope, $location) {
-	$scope.endpointUrl =
-	 "ws://localhost:"+$location.port()+"/_testing_/endpoint";
-	$scope.message = "";
-	var webSocket = new WebSocket($scope.endpointUrl);
-	webSocket.onerror = function (event) {
-		$scope.message = event.data;
-		$scope.$apply();
-	};
-	webSocket.onopen = function(event) {
-		webSocket.send("Connected");
-	};
-	webSocket.onmessage = function(event) {
-		if (event && event.data) {
-			var jsonObj = JSON.parse(event.data);
-			$scope.message = $scope.message + '\n'
-				+ jsonObj.timeStamp + ': '+ jsonObj.msg;
-			$scope.$apply();
-		}
-		webSocket.send("listen");
-	};
-	$scope.$on('$destroy', function() {
-		webSocket.close(); //Close web socket connection
-	});
-});
-</pre><h4>Now, for the server-side...</h4><p>
-            1) The JMS producer servlet is a simple servlet that defines a JMS topic and a connection factory resources (via TOMEE+ injection binding).&nbsp;</p>
-            <pre>public final class JmsProducerServlet extends HttpServlet {
-...
-	@Resource(name = "foo")
-	private Topic fooTopic;
-	@Resource
-	private ConnectionFactory jmsConnFactory;
-...
-</pre><p style="margin-left: 20px;">
-            On a POST from the client side:&nbsp;</p>
-            <pre>   @Override
-   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-    throws ServletException, IOException
-   {
-   ...
-</pre><p style="margin-left: 20px;">
-            a) Creates/starts a JMS connection</p>
-            <pre>	jmsConn = jmsConnFactory.createConnection();
-	jmsConn.start();
-</pre><p style="margin-left: 20px;">
-            b) Creates a JMS session (no transaction, auto acknowledge message sent)</p>
-            <pre>	jmsSession =
-	  jmsConn.createSession(false,Session.AUTO_ACKNOWLEDGE);
-</pre><p style="margin-left: 20px;">
-            c) Parses the JSON request (via Gson) to extract message to be sent</p>
-            <pre>	final Request jsonReq =
-		gson.fromJson(req.getReader(), Request.class);
-</pre><p style="margin-left: 20px;">
-            d) Creates a non-persistent message producer for the JMS topic</p>
-            <pre>	final MessageProducer producer =
-		jmsSession.createProducer(fooTopic);
-	producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-</pre><p style="margin-left: 20px;">
-            e) Creates/sends the JMS message envelope and put the message in that was extracted</p>
-            <pre>	// Create a message
-	final TextMessage message = jmsSession.createTextMessage(msg);
-	// Tell the producer to send the message
-	producer.send(message);
-</pre><p style="margin-left: 20px;">
-            f) Returns a feedback to caller</p>
-            <pre>	//Write back ack to response
-	pw.println(SUCCESS_MSG);
-</pre><p>
-            2) The JMS consumer server endpoint also utilizes TOMEE+ binding to create the same JMS topic by name and a connection factory resource:</p>
-            <pre>@ServerEndpoint(value = "/endpoint")
-public final class JmsConsumerServerEndPoint {
-...
-	@Resource(name = "foo")
-	private Topic fooTopic;
-	@Resource
-	private ConnectionFactory jmsConnFactory;
-...
-</pre><p style="margin-left: 20px;">
-            a) On a web socket open request from the client-side:</p>
-            <pre>    @OnOpen
-    public void onOpen(final Session session) {
-</pre><p style="margin-left: 20px;">
-            It creates/starts a JMS connection and session (again no transaction, auto acknowledge message receipt):</p>
-            <pre>	jmsConn = jmsConnFactory.createConnection();
-	jmsConn.start();
-	jmsSession =
-	 jmsConn.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-</pre><p style="margin-left: 20px;">
-            b) On a web socket request to listen:</p>
-            <pre>    @OnMessage
-    public String onMessage(final String message, final Session session) {
-     ...
-     switch (message) {
-     case "listen":
-</pre><p style="margin-left: 20px;">
-            It creates a JMS consumer of the topic and waits to receive the message:</p>
-            <pre>	// Create a MessageConsumer from the Session for the Topic or Queue
-	final MessageConsumer consumer =
-	  jmsSession.createConsumer(fooTopic);
-	// Wait to receive the message
-	final Message msg = consumer.receive();
-</pre><p style="margin-left: 20px;">
-            When there is a JMS message to be consumed, it wraps it up into a JSON response and sends it back to the client:</p>
-            <pre>	...
-        else if (msg instanceof TextMessage)
-	{//Send back msg text to response
-	    resp = new Response((TextMessage)msg);
-	}
-	...
-	return new Gson().toJson(resp);
-</pre><p style="margin-left: 20px;">
-            c) It is a good idea to clean up the JMS resources on closing of the web socket:</p>
-            <pre>   @OnClose
-   public void onClose(final Session session, final CloseReason closeReason) {
-	...
-	try {
-		if (session.isOpen()) {
-			session.close();
-		}
-		if (jmsSession != null) {
-			jmsSession.close();
-		}
-		if (jmsConn != null) {
-			jmsConn.stop();
-			jmsConn.close();
-		}
-	}
-	catch (JMSException | IOException e) {
-		logger.debug("Problem closing resources", e);
-	}
-   }
-</pre><h4>How about some Java Unit Testing...</h4><p>
-            1) We utilize mockito annotations to mock out the JMS communication portion of the JMS producer servlet to test the behavior:</p>
-            <pre>@RunWith(MockitoJUnitRunner.class)
-public class TestJmsProducerServlet {
-	@Mock(name = "jmsConnFactory")
-	private ConnectionFactory mockJmsConnFactory;
-	@InjectMocks
-	private JmsProducerServlet servlet;
-	@Mock
-	private HttpServletRequest mockReq;
-	@Mock
-	private HttpServletResponse mockResp;
-	@Mock
-	private Connection mockJmsConn;
-	@Mock
-	private Session mockJmsSession;
-	@Mock
-	private MessageProducer mockProducer;
-	...
-	@Before
-	public final void beforeTest() throws Exception {
-		Mockito
-		.when(mockJmsConnFactory.createConnection())
-		.thenReturn(mockJmsConn);
-
-		Mockito
-		.when(mockJmsConn.createSession(
-			Mockito.anyBoolean(), Mockito.anyInt()))
-		.thenReturn(mockJmsSession);
-
-		Mockito.when(mockJmsSession.createProducer(
-			Mockito.any(Destination.class)))
-		.thenReturn(mockProducer);
-	}
-	...
-</pre><p>
-            2) Same goes for the JMS consumer endpoint:</p>
-            <pre>@RunWith(MockitoJUnitRunner.class)
-public class TestJmsConsumerServerEndPoint {
-	@Mock(name = "jmsConnFactory")
-	private ConnectionFactory mockJmsConnFactory;
-	@InjectMocks
-	private JmsConsumerServerEndPoint endPoint;
-	@Mock
-	private Session mockSession;
-	@Mock
-	private MessageConsumer mockConsumer;
-	...
-</pre><h4>How about some Javascript Jasmine Testing...</h4><p>
-            We utilize angular-mocks.js to mock out the angular client/server communication:</p>
-            <pre>/**
- * Testing client-side producer
- */
-describe('Producer Controller', function() {
-	var $httpBackend, $rootScope, createController;
-	beforeEach(module('producerApp'));
-	beforeEach(inject(function($injector) {
-		// Set up the mock http service responses
-		$httpBackend = $injector.get('$httpBackend');
-		// Get hold of a scope (i.e. the root scope)
-		$rootScope = $injector.get('$rootScope');
-		// The $controller service is used
-		//to create instances of controllers
-		var $controller = $injector.get('$controller');
-		createController = function() {
-			return $controller('producerCtrl'
-				, {'$scope' : $rootScope });
-		};
-	}));
-	afterEach(function() {
-		$httpBackend.verifyNoOutstandingExpectation();
-		$httpBackend.verifyNoOutstandingRequest();
-	});
-</pre><p>
-            Here is a test of the post the message to producer servlet:</p>
-            <pre>	it('should send a successful post message to JMS Producer Servlet (JPS)', function() {
-		var testToken = 'TESTING!!';
-		$httpBackend.expectPOST(testToken
-			, {mode : testToken, msg: testToken})
-		   .respond(testToken);
-		createController();
-		$rootScope.jmsMode = testToken;
-		$rootScope.jpsUrl = testToken;
-		$rootScope.message = testToken;
-		$rootScope.produce();
-		$httpBackend.flush();
-		expect($rootScope.feedback)
-		   .toEqual("Success: "+testToken);
-	});
-</pre><h4>You can download a compressed version of the whole project&nbsp;<a href="uploads/AmqProofOfConcept.zip">here</a>.</h4><h4>How do you run it? Depends on the IDE, I use Eclipse maven launcher to package it:</h4><p>
-            <img src="uploads/EclipsePackage.png" style="width: 673px;"></p><h4>... and here is my launcher to start TOMEE+ in debug mode (listening to any changes in source code to reload):</h4><p>
-            <img src="uploads/EclipseTomeeDebug.png" style="width: 675px;"></p></p>
+                </pre>
+            </small>
+            <h4>
+                You can git this project at <a href="https://github.com/ozguramac/penr-oz-poc-googDrv">here</a>
+            </h4>
             <p class="post-meta">Posted by <a href="#">Ozgur Amac</a>
           </article>
         </div>
       </div>
-    </div>
+      <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <article>
+            <h2 class="title">How to use Dozer map-id for multiple destinations?</h2>
+            <h4>Java source:</h4>
+            <p>
+              Dozer's map-id attribute has to be unique across, but we can still use map-id to define mapping to multiple
+              destinations of the same source. Here is a method that is trying achieve this:
+            </p>
+            <small>
+                <pre>
+@Component("theMapper")
+public class TheMapper {
+ @Resource
+ private Mapper dozerMapper;
+ public SomeDestinationBean map(
+  final SomeSrcBean ssb
+ ,final AnotherSrcBean asb
+ ,final String destinationType)
+ {
+  final SomeDestinationBean sdb = new SomeDestinationBean();
+  //Do mapping. Note that map id has to be unique
+  dozerMapper.map(ssb, sdb, destinationType+"_ss2sd");
+  dozerMapper.map(asb, sdb, destinationType+"_as2sd");
+  return sdb;
+ }
+}
+                </pre>
+            </small>
+            <h4>Dozer XML mappings:</h4>
+            <p>
+              How do the dozer mapping configuration look like? This is for the first destination type (dozer-mapping-A.xml):
+            </p>
+            <small>
+                <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ &lt;mappings xmlns="http://dozer.sourceforge.net"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://dozer.sourceforge.net
+  http://dozer.sourceforge.net/schema/beanmapping.xsd"
+  &lt;mapping map-id="destA_ss2sd"&gt;
+   &lt;class-a&gt;SomeSrcBean&lt;/class-a&gt;
+   &lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
+   &lt;field&gt;
+    &lt;a&gt;someSrcStr&lt;/a&gt;
+    &lt;b&gt;someDestinationStr&lt;/b&gt;
+   &lt;/field&gt;
+  &lt;/mapping&gt;
+  &lt;mapping map-id="destA_as2sd"&gt;
+   &lt;class-a&gt;AnotherSrcBean&lt;/class-a&gt;
+   &lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
+   &lt;field&gt;
+    &lt;a&gt;anotherSrcDbl&lt;/a&gt;
+    &lt;b&gt;someDestinationDbl&lt;/b&gt;
+   &lt;/field&gt;
+  &lt;/mapping&gt;
+ &lt;/mappings&gt;
+                </pre>
+            </small>
+            <p>
+              ...And the one for the second destination type&nbsp;(dozer-mapping-B.xml):
+            </p>
+            <small>
+                <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ &lt;mappings xmlns="http://dozer.sourceforge.net"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+   http://dozer.sourceforge.net
+   http://dozer.sourceforge.net/schema/beanmapping.xsd"
+  &lt;mapping map-id="destB_ss2sd"&gt;
+   &lt;class-a&gt;SomeSrcBean&lt;/class-a&gt;
+   &lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
+   &lt;field&gt;
+    &lt;a&gt;someSrcStr2&lt;/a&gt;
+    &lt;b&gt;someDestinationStr&lt;/b&gt;
+   &lt;/field&gt;
+  &lt;/mapping&gt;
+  &lt;mapping map-id="destB_as2sd"&gt;
+   &lt;class-a&gt;AnotherSrcBean&lt;/class-a&gt;
+   &lt;class-b&gt;SomeDestinationBean&lt;/class-b&gt;
+   &lt;field&gt;
+    &lt;a&gt;anotherSrcDbl&lt;/a&gt;
+    &lt;b&gt;someDestinationDbl&lt;/b&gt;
+   &lt;/field&gt;
+  &lt;/mapping&gt;
+ &lt;/mappings&gt;
+                </pre>
+            </small>
+            <h4>Spring configuration:</h4>
+            <p>
+              I have used spring to hook up the XML mappings to Java source (spring-beans.xml):
+            </p>
+            <small>
+                <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ &lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+  &lt;context:component-scan base-package="com.oz.dozer.mapper"/&gt;
+  &lt;context:annotation-config/&gt;
+  &lt;bean id="mapper" class="org.dozer.DozerBeanMapper"&gt;
+   &lt;property name="mappingFiles"&gt;
+    &lt;list&gt;
+     &lt;value&gt;dozer-mapping-A.xml&lt;/value&gt;
+     &lt;value&gt;dozer-mapping-B.xml&lt;/value&gt;
+    &lt;/list&gt;
+   &lt;/property&gt;
+   &lt;/bean&gt;
+  &lt;/beans&gt;
+                </pre>
+            </small>
+            <h4>TestNG Spring Run:</h4>
+            <p>
+              I have used testng spring context test to connect the dots and test this out:
+            </p>
+            <small>
+                <pre>
+@ContextConfiguration("classpath:spring-beans.xml")
+public class TheMapperTestNg extends AbstractTestNGSpringContextTests {
+ @Autowired
+ private TheMapper theMapper;
+ @Test
+ public void mappingTest() {
+  final SomeSrcBean ssb = new SomeSrcBean();
+  final AnotherSrcBean asb = new AnotherSrcBean();
+  final String someSrcStr = "TESTING!!";
+  final String someSrcStr2 = "TESTING2!!";
+  ssb.setSomeSrcStr(someSrcStr);
+  ssb.setSomeSrcStr2(someSrcStr2);
+  final double anotherSrcDbl = 666.66d;
+  asb.setAnotherSrcDbl(anotherSrcDbl);
+  final SomeDestinationBean sdb1 =
+  theMapper.map(ssb, asb, "destA");
+  AssertJUnit.assertEquals("Some str"
+   , sdb1.getSomeDestinationStr(), someSrcStr);
+  AssertJUnit.assertEquals("Another dbl"
+   , sdb1.getSomeDestinationDbl(), anotherSrcDbl);
+  final SomeDestinationBean sdb2 =
+  theMapper.map(ssb, asb, "destB");
+  AssertJUnit.assertEquals("Some str 2"
+  , sdb2.getSomeDestinationStr(), someSrcStr2);
+  AssertJUnit.assertEquals("Another dbl"
+  , sdb2.getSomeDestinationDbl(), anotherSrcDbl);
+ }
+}
+                </pre>
+            </small>
+            <h4>
+                You can git this project at <a href="https://github.com/ozguramac/penr-oz-poc-dozer">here</a>
+            </h4>
+            <p class="post-meta">Posted by <a href="#">Ozgur Amac</a></p>
+            </article>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <article>
+                <h2 class="title">
+                    Active MQ Proof of Concept
+                </h2>
+                <p>
+                This is a proof of concept blog about Active MQ using Tomee+ JMS, Servlet, Endpoint on the server
+                side, and Angular, JS web sockets on the client side. Java testing is done via JUnit, Mockito.
+                Javascript testing is done via Jasmine.
+                Let's first start out by describing the maven setup of the project...<br>
+                1. Maven Compiler plugin (the usual) version 3.1 and the project requires JDK 1.7 and up:
+                </p>
+                <small>
+                    <pre>
+&lt;plugin&gt;
+ &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+ &lt;version&gt;3.1&lt;/version&gt;
+ &lt;configuration&gt;
+  &lt;source&gt;1.7&lt;/source&gt;
+  &lt;target&gt;1.7&lt;/target&gt;
+ &lt;/configuration&gt;
+&lt;/plugin&gt;
+                    </pre>
+                </small>
+                <p>
+                  2. a) Jasmine Maven plugin simplifies integrating JS testing into maven test lifecycle goal
+                  (Notice the executions tag):
+                </p>
+                <small>
+                    <pre>
+&lt;plugin&gt;
+ &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
+ &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
+ &lt;version&gt;1.3.1.5&lt;/version&gt;
+ &lt;executions&gt;
+  &lt;execution&gt;
+   &lt;goals&gt;
+    &lt;goal&gt;test&lt;/goal&gt;
+   &lt;/goals&gt;
+  &lt;/execution&gt;
+ &lt;/executions&gt;
+&lt;/plugin&gt;
+                    </pre>
+                </small>
+                <p>
+                  2. b) We add some custom configuration to Jasmine Maven plugin to support Angular testing with
+                  a selenium chrome driver (angular-mocks helps with mocking the angular plumbing), and we have a
+                  customized JS source directory (default is src/main/javascript):
+                </p>
+                <small>
+                    <pre>
+&lt;plugin&gt;
+ &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
+ &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
+ &lt;version&gt;1.3.1.5&lt;/version&gt;
+ &lt;configuration&gt;
+  &lt;webDriverClassName&gt;
+   org.openqa.selenium.chrome.ChromeDriver
+  &lt;/webDriverClassName&gt;
+  &lt;preloadSources&gt;
+   &lt;source&gt;${jquery.load.path}/jquery.js&lt;/source&gt;
+   &lt;source&gt;${angular.load.path}/angular.js&lt;/source&gt;
+   &lt;source&gt;${angular.load.path}/angular-mocks.js&lt;/source&gt;
+  &lt;/preloadSources&gt;
+  &lt;jsSrcDir&gt;${project.basedir}/src/main/webapp/js&lt;/jsSrcDir&gt;
+ &lt;/configuration&gt;
+ &lt;executions&gt;
+  &lt;execution&gt;
+   &lt;goals&gt;
+    &lt;goal&gt;test&lt;/goal&gt;
+   &lt;/goals&gt;
+  &lt;/execution&gt;
+ &lt;/executions&gt;
+&lt;/plugin&gt;
+                </pre>
+              </small>
+              <p>
+                  3. a) Last piece is a TOMEE maven plugin that helps with packaging/deploying to a TOMEE server and
+                  starting debugging
+              </p>
+              <small>
+                  <pre>
+&lt;plugin&gt;
+ &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
+ &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
+ &lt;version&gt;1.7.1&lt;/version&gt;
+&lt;/plugin&gt;
+                  </pre>
+              </small>
+              <p>
+                3. b) We add reload synchronization configuration to TOMEE maven plugin that automates hot code
+                  deploy (Java, JS or HTML changes) to a TOMEE+ server at debug mode:
+              </p>
+              <small>
+                <pre>
+&lt;plugin&gt;
+ &lt;groupId&gt;org.apache.openejb.maven&lt;/groupId&gt;
+ &lt;artifactId&gt;tomee-maven-plugin&lt;/artifactId&gt;
+ &lt;version&gt;1.7.1&lt;/version&gt;
+ &lt;configuration&gt;
+  &lt;tomeeVersion&gt;1.7.1&lt;/tomeeVersion&gt;
+  &lt;tomeeClassifier&gt;plus&lt;/tomeeClassifier&gt;
+  &lt;synchronization&gt;
+   &lt;extensions&gt;
+    &lt;extension&gt;.class&lt;/extension&gt;
+    &lt;extension&gt;.js&lt;/extension&gt;
+    &lt;extension&gt;.html&lt;/extension&gt;
+   &lt;/extensions&gt;
+  &lt;/synchronization&gt;
+  &lt;reloadOnUpdate&gt;true&lt;/reloadOnUpdate&gt;
+ &lt;/configuration&gt;
+&lt;/plugin&gt;
+                </pre>
+              </small>
+              <p>
+                  4. Following maven dependencies are added to the project. Log4j is the usual logging library.
+                  Javax servlet, websocket and JMS are needed for server-side setup. GSON is a JSON library.
+                  JUnit, and mockito are needed for java testing. Jasmine and Selenium are needed for client-side
+                  JS testing:
+              </p>
+              <small>
+                <pre>
+&lt;dependencies&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;log4j&lt;/groupId&gt;
+  &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+  &lt;version&gt;1.2.17&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+  &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+  &lt;version&gt;3.1.0&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;javax.jms&lt;/groupId&gt;
+  &lt;artifactId&gt;javax.jms-api&lt;/artifactId&gt;
+  &lt;version&gt;2.0.1&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;javax.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;javax.websocket-api&lt;/artifactId&gt;
+  &lt;version&gt;1.1&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+  &lt;artifactId&gt;gson&lt;/artifactId&gt;
+  &lt;version&gt;2.3.1&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;4.11&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;org.mockito&lt;/groupId&gt;
+  &lt;artifactId&gt;mockito-all&lt;/artifactId&gt;
+  &lt;version&gt;1.10.19&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;com.github.searls&lt;/groupId&gt;
+  &lt;artifactId&gt;jasmine-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.3.1.5&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+  &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+  &lt;artifactId&gt;selenium-chrome-driver&lt;/artifactId&gt;
+  &lt;version&gt;2.3.1&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+ &lt;/dependency&gt;
+&lt;/dependencies&gt;
+                </pre>
+              </small>
+              <h4>Next, let's take a look at the client-side...</h4>
+              <p>
+                  1) We will start out with HTML for the Producer page:
+              </p>
+              <img src="http://handmadebot.com/uploads/Producer.png" alt="">
+              <p style="margin-left: 20px;">
+                  We include angular library at the head, and add angular app/controller JS at the bottom of HTML
+                  body by convention. There is a simple form with a text area and submit button. Text area is
+                  required for the form and the button is disabled unless the form text area has something in it.
+                  On the bottom of the form, we have a small space for feedback from the server:
+              </p>
+              <small>
+                <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html ng-app="producerApp"&gt;
+ &lt;head&gt;
+  &lt;meta charset="ISO-8859-1"&gt;
+  &lt;title&gt;Producer&lt;/title&gt;
+  &lt;script
+   src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
+  >&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;div ng-controller="producerCtrl"&gt;
+   &lt;form name="produceForm" ng-submit="produce()"&gt;
+    &lt;h2&gt;Message&lt;/h2&gt;
+    &lt;p&gt;
+     &lt;textarea ng-model="message" name="message" rows="25" cols="40" required&gt;
+     &lt;/textarea&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+     &lt;button type="submit"
+      ng-disabled="produceForm.$pristine ||!produceForm.$dirty"
+     >Produce&lt;/button&gt;
+    &lt;/p&gt;
+   &lt;/form&gt;
+   &lt;div&gt;{{feedback}}&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;script src="js/producerApp.js"&gt;&lt;/script&gt;
+  &lt;script src="js/producerCtrl.js"&gt;&lt;/script&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+              </small>
+              <p>
+                  2) Next, let's take a look at HTML for the Consumer page:
+              </p>
+              <img src="http://handmadebot.com/uploads/Consumer.png"/>
+              <p>
+                  Again, we include angular library at the head, and add angular app/controller JS at the bottom of
+                  HTML body by convention. There is a simple read-only text area where messages we listen to will
+                  show up:
+              </p>
+              <small>
+                <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html ng-app="consumerApp"&gt;
+ &lt;head&gt;
+  &lt;meta charset="ISO-8859-1"&gt;
+  &lt;title&gt;Consumer&lt;/title&gt;
+  &lt;script
+   src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
+  >&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;div ng-controller="consumerCtrl"&gt;
+   &lt;h2&gt;Message(s)&lt;/h2&gt;
+   &lt;p&gt;
+    &lt;textarea ng-model="message" name="message" rows="25" cols="40" readonly&gt;
+    &lt;/textarea&gt;
+   &lt;/p&gt;
+   &lt;/div&gt;
+   &lt;script src="js/consumerApp.js"&gt;&lt;/script&gt;
+   &lt;script src="js/consumerCtrl.js"&gt;&lt;/script&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+              </small>
+              <p>
+                  3) Next, we move onto Angular.JS for the Producer page:
+              </p>
+              <p>
+                  Here is the producer angular app:
+              </p>
+              <small>
+                <pre>
+/**
+* Producer App
+*/
+var app = angular.module("producerApp", []);
+                </pre>
+              </small>
+              <p>
+                  ...and the producer controller which talks to the JMS producer servlet to send the message and
+                  get a feedback of message receipt:
+              </p>
+              <small>
+                <pre>
+/**
+* Producer Controller
+*/
+app.controller("producerCtrl", function($scope, $http, $location) {
+ $scope.jmsMode = "PUBLISH_TO_TOPIC";
+ $scope.jpsUrl =
+  "http://localhost:"+$location.port()+"/_testing_/JPS/produce.do";
+ $scope.message = "";
+ $scope.feedback = "";
+ $scope.produce = function() {
+  $http.post($scope.jpsUrl, {
+   mode : $scope.jmsMode
+   ,msg: $scope.message
+  })
+  .success(function(data, status, headers, config){
+   $scope.feedback = "Success: "+data;
+  })
+  .error(function(data, status, headers, config){
+   $scope.feedback = "Error: "+data;
+  });
+ };
+});
+                </pre>
+              </small>
+              <p>
+                  4) On the consumer client side we have the following Angular.JS:
+              </p>
+              <p>
+                  The consumer app:
+              </p>
+              <small>
+                <pre>
+/**
+* Consumer App
+*/
+var app = angular.module("consumerApp", []);
+                </pre>
+              </small>
+              <p>
+                  ...and the consumer controller that establishes a web socket connection to the message consumer
+                  server endpoint to listen to any messages:
+              </p>
+              <small>
+                <pre>
+/**
+* Consumer Controller
+*/
+app.controller("consumerCtrl", function($scope, $location) {
+ $scope.endpointUrl =
+  "ws://localhost:"+$location.port()+"/_testing_/endpoint";
+ $scope.message = "";
+ var webSocket = new WebSocket($scope.endpointUrl);
+ webSocket.onerror = function (event) {
+  $scope.message = event.data;
+  $scope.$apply();
+ };
+ webSocket.onopen = function(event) {
+  webSocket.send("Connected");
+ };
+ webSocket.onmessage = function(event) {
+  if (event && event.data) {
+   var jsonObj = JSON.parse(event.data);
+   $scope.message = $scope.message + '\n'
+    + jsonObj.timeStamp + ': '+ jsonObj.msg;
+   $scope.$apply();
+  }
+  webSocket.send("listen");
+ };
+ $scope.$on('$destroy', function() {
+  webSocket.close(); //Close web socket connection
+ });
+});
+                </pre>
+              </small>
+              <h4>Now, for the server-side...</h4>
+              <p>
+                  1) The JMS producer servlet is a simple servlet that defines a JMS topic and a connection factory
+                  resources (via TOMEE+ injection binding).
+              </p>
+              <small>
+                <pre>
+public final class JmsProducerServlet extends HttpServlet {
+...
+@Resource(name = "foo")
+private Topic fooTopic;
+@Resource
+private ConnectionFactory jmsConnFactory;
+...
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  On a POST from the client side:&nbsp;
+              </p>
+              <small>
+                <pre>
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+throws ServletException, IOException
+{
+...
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  a) Creates/starts a JMS connection
+              </p>
+              <small>
+                <pre>
+jmsConn = jmsConnFactory.createConnection();
+jmsConn.start();
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  b) Creates a JMS session (no transaction, auto acknowledge message sent)
+              </p>
+              <small>
+                <pre>
+jmsSession =
+jmsConn.createSession(false,Session.AUTO_ACKNOWLEDGE);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  c) Parses the JSON request (via Gson) to extract message to be sent
+              </p>
+              <small>
+                <pre>
+final Request jsonReq =
+gson.fromJson(req.getReader(), Request.class);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  d) Creates a non-persistent message producer for the JMS topic
+              </p>
+              <small>
+                <pre >
+final MessageProducer producer =
+ jmsSession.createProducer(fooTopic);
+producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  e) Creates/sends the JMS message envelope and put the message in that was extracted
+              </p>
+              <small>
+                <pre>
+// Create a message
+final TextMessage message = jmsSession.createTextMessage(msg);
+// Tell the producer to send the message
+producer.send(message);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  f) Returns a feedback to caller
+              </p>
+              <small>
+                <pre>
+//Write back ack to response
+pw.println(SUCCESS_MSG);
+                </pre>
+              </small>
+              <p>
+                  2) The JMS consumer server endpoint also utilizes TOMEE+ binding to create the same JMS topic by
+                  name and a connection factory resource:
+              </p>
+              <small>
+                <pre>
+@ServerEndpoint(value = "/endpoint")
+public final class JmsConsumerServerEndPoint {
+...
+ @Resource(name = "foo")
+ private Topic fooTopic;
+ @Resource
+ private ConnectionFactory jmsConnFactory;
+...
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  a) On a web socket open request from the client-side:
+              </p>
+              <small>
+                  <pre>
+@OnOpen
+public void onOpen(final Session session) {
+                  </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  It creates/starts a JMS connection and session (again no transaction,
+                  auto acknowledge message receipt):
+              </p>
+              <small>
+                <pre>
+jmsConn = jmsConnFactory.createConnection();
+jmsConn.start();
+jmsSession =
+jmsConn.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  b) On a web socket request to listen:
+              </p>
+              <small>
+                  <pre>
+@OnMessage
+public String onMessage(final String message, final Session session) {
+...
+ switch (message) {
+ case "listen":
+                  </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  It creates a JMS consumer of the topic and waits to receive the message:
+              </p>
+              <small>
+                <pre>
+// Create a MessageConsumer from the Session for the Topic or Queue
+final MessageConsumer consumer =
+ jmsSession.createConsumer(fooTopic);
+// Wait to receive the message
+final Message msg = consumer.receive();
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  When there is a JMS message to be consumed, it wraps it up into a JSON response and
+                  sends it back to the client:
+              </p>
+              <small>
+                  <pre>
+  ...
+  else if (msg instanceof TextMessage)
+  {//Send back msg text to response
+   resp = new Response((TextMessage)msg);
+  }
+  ...
+  return new Gson().toJson(resp);
+                </pre>
+              </small>
+              <p style="margin-left: 20px;">
+                  c) It is a good idea to clean up the JMS resources on closing of the web socket:
+              </p>
+              <small>
+                  <pre>
+@OnClose
+public void onClose(final Session session, final CloseReason closeReason) {
+...
+ try {
+  if (session.isOpen()) {
+   session.close();
+  }
+  if (jmsSession != null) {
+   jmsSession.close();
+  }
+  if (jmsConn != null) {
+   jmsConn.stop();
+   jmsConn.close();
+  }
+ }
+ catch (JMSException | IOException e) {
+  logger.debug("Problem closing resources", e);
+ }
+}
+                </pre>
+              </small>
+              <h4>How about some Java Unit Testing...</h4>
+              <p>
+                  1) We utilize mockito annotations to mock out the JMS communication portion of the JMS producer
+                  servlet to test the behavior:
+              </p>
+              <small>
+                <pre>
+@RunWith(MockitoJUnitRunner.class)
+public class TestJmsProducerServlet {
+@Mock(name = "jmsConnFactory")
+private ConnectionFactory mockJmsConnFactory;
+@InjectMocks
+private JmsProducerServlet servlet;
+@Mock
+private HttpServletRequest mockReq;
+@Mock
+private HttpServletResponse mockResp;
+@Mock
+private Connection mockJmsConn;
+@Mock
+private Session mockJmsSession;
+@Mock
+private MessageProducer mockProducer;
+...
+@Before
+public final void beforeTest() throws Exception {
+ Mockito
+ .when(mockJmsConnFactory.createConnection())
+ .thenReturn(mockJmsConn);
 
-    <hr>
+ Mockito
+ .when(mockJmsConn.createSession(
+ Mockito.anyBoolean(), Mockito.anyInt()))
+ .thenReturn(mockJmsSession);
+
+ Mockito.when(mockJmsSession.createProducer(
+ Mockito.any(Destination.class)))
+ .thenReturn(mockProducer);
+}
+...
+                </pre>
+              </small>
+              <p>
+                  2) Same goes for the JMS consumer endpoint:
+              </p>
+              <small>
+                <pre>
+@RunWith(MockitoJUnitRunner.class)
+public class TestJmsConsumerServerEndPoint {
+ @Mock(name = "jmsConnFactory")
+ private ConnectionFactory mockJmsConnFactory;
+ @InjectMocks
+ private JmsConsumerServerEndPoint endPoint;
+ @Mock
+ private Session mockSession;
+ @Mock
+ private MessageConsumer mockConsumer;
+...
+                </pre>
+              </small>
+              <h4>How about some Javascript Jasmine Testing...</h4>
+              <p>
+                  We utilize angular-mocks.js to mock out the angular client/server communication:
+              </p>
+              <small>
+                  <pre>
+/**
+* Testing client-side producer
+*/
+describe('Producer Controller', function() {
+ var $httpBackend, $rootScope, createController;
+ beforeEach(module('producerApp'));
+ beforeEach(inject(function($injector) {
+ // Set up the mock http service responses
+ $httpBackend = $injector.get('$httpBackend');
+ // Get hold of a scope (i.e. the root scope)
+ $rootScope = $injector.get('$rootScope');
+ // The $controller service is used
+ //to create instances of controllers
+ var $controller = $injector.get('$controller');
+ createController = function() {
+  return $controller('producerCtrl'
+  , {'$scope' : $rootScope });
+ };
+}));
+afterEach(function() {
+ $httpBackend.verifyNoOutstandingExpectation();
+ $httpBackend.verifyNoOutstandingRequest();
+});
+                </pre>
+              </small>
+              <p>
+                  Here is a test of the post the message to producer servlet:
+              </p>
+              <small>
+                  <pre>
+it('should send a successful post message to JMS Producer Servlet (JPS)', function() {
+ var testToken = 'TESTING!!';
+ $httpBackend.expectPOST(testToken
+  , {mode : testToken, msg: testToken})
+ .respond(testToken);
+ createController();
+ $rootScope.jmsMode = testToken;
+ $rootScope.jpsUrl = testToken;
+ $rootScope.message = testToken;
+ $rootScope.produce();
+ $httpBackend.flush();
+ expect($rootScope.feedback)
+ .toEqual("Success: "+testToken);
+});
+                </pre>
+              </small>
+              <h4>
+                  You can git this project at <a href="https://github.com/ozguramac/penr-oz-poc-amq">here</a>
+              </h4>
+              <h4>You can download a compressed version of the whole project
+                  <a href="uploads/AmqProofOfConcept.zip">here</a>.
+              </h4>
+              <h4>How do you run it? Depends on the IDE, I use Eclipse maven launcher to package it:</h4>
+              <img src="uploads/EclipsePackage.png"/>
+              <h4>
+                  ... and here is my launcher to start TOMEE+ in debug mode
+                  (listening to any changes in source code to reload):
+              </h4>
+              <img src="uploads/EclipseTomeeDebug.png"/>
+              <p class="post-meta">Posted by <a href="#">Ozgur Amac</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
 
     <!-- About Section -->
     <section class="success" id="about">
