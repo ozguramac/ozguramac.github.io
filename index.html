@@ -109,15 +109,27 @@
                 </div>
 
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">3. Results</h3>
-                <p class="mb-6">
+                <p class="mb-8">
                     With these flags, <code>nvidia-smi</code> communicates successfully. By offloading the UI to the integrated graphics, we reclaim the full 16GB VRAM for high-precision models like <strong>Gemma 4 E2B</strong>.
                 </p>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg mb-6 shadow-sm">
+                    <h4 class="text-xl font-bold text-green-900 mb-3">Update: Agent Testing Success</h4>
+                    <p class="text-green-800 mb-3">
+                        Following the initial hardware setup, we moved to the software stack with phenomenal results:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-green-800">
+                        <li>Successfully ran <strong>Gemma 4 E2B</strong> on Ollama with <strong>100% GPU utilization</strong>.</li>
+                        <li>Connected it as the agent model for <strong>OpenClaw</strong> and successfully interacted via chat.</li>
+                        <li>Pulled the larger <strong>Gemma 4 E4B</strong> model and reran the exact same flow successfully!</li>
+                    </ul>
+                </div>
             </div>
 
             <footer class="mt-16 pt-8 border-t border-gray-200">
                 <div class="bg-blue-50 border border-blue-100 rounded-lg p-6">
                     <h4 class="font-bold text-blue-900 mb-2 font-mono">Status: SUCCESS</h4>
-                    <p class="text-blue-800 text-sm">Currently running Ollama + OpenClaw on Ubuntu with 100% GPU utilization.</p>
+                    <p class="text-blue-800 text-sm">Currently running Ollama + OpenClaw on Ubuntu with 100% GPU utilization processing Gemma 4 E4B interactions.</p>
                 </div>
             </footer>
         </article>
