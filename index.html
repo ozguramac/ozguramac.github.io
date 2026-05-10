@@ -46,6 +46,87 @@
             </script>
         </div>
 
+        <article class="mb-20">
+            <header class="mb-12">
+                <div class="flex items-center space-x-2 text-blue-600 font-semibold text-sm mb-3 uppercase tracking-wider">
+                    <span>Hardware Hacking</span>
+                    <span>•</span>
+                    <span>May 2026</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    The 31B Breakthrough
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Bridging the "Implementation Gap" to run Gemma 4:31B via OpenClaw on a legacy motherboard.
+                </p>
+            </header>
+
+            <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8 shadow-sm">
+                    <h4 class="font-bold text-blue-900 mb-2 font-mono">Status: Operational 🚀</h4>
+                    <p class="text-blue-800 text-sm">We have successfully bridged the "Implementation Gap." By combining a decade-old Asus B85M-E with a modern RTX 5060 Ti (16GB) and a freshly optimized 32GB RAM pool, the node is now running Gemma 4:31B via OpenClaw.</p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">What We’ve Achieved</h3>
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li><strong>Hardware Harmonization:</strong> Resolved the "PCI-e region invalid" error using <code>pci=realloc,nocrs</code> kernel flags, allowing the 16GB VRAM window to be mapped on a legacy BIOS.</li>
+                    <li><strong>Bus Optimization:</strong> Maximized data throughput by locking the GPU to Gen3 speed and enabling 128-bit Dual Channel memory mode (hitting 17 GB/s bandwidth).</li>
+                    <li><strong>Hybrid Inference:</strong> Configured Ollama to intelligently split the 31B model—placing the majority of layers in VRAM and utilizing the new 32GB Ballistix RAM pool for the "spillover."</li>
+                    <li><strong>Agent Integration:</strong> Verified a full end-to-end loop with OpenClaw, allowing the agent to utilize a high-reasoning 31B model for complex coding tasks.</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">The Final Technical Stack</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full text-left border-collapse border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-gray-700">Layer</th>
+                                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-gray-700">Specification</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Model</td>
+                                <td class="px-6 py-4">Gemma 4:31B (Quantized)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Logic</td>
+                                <td class="px-6 py-4 text-blue-600">OpenClaw Agentic Workflow</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">VRAM</td>
+                                <td class="px-6 py-4">16GB (Blackwell Architecture)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">System RAM</td>
+                                <td class="px-6 py-4">32GB DDR3-1600 CL9 (Dual Channel)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Interface</td>
+                                <td class="px-6 py-4">Ollama API over 128-bit Memory Bus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Lessons for the Home Lab</h3>
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li><strong>Don't Trust dmidecode blindly:</strong> While software might report 64-bit widths, bandwidth benchmarks (<code>mbw</code>) are the true proof of Dual Channel success.</li>
+                    <li><strong>SATA Cables are Traitors:</strong> Always double-check your drive connections after wrestling with RAM clips.</li>
+                    <li><strong>Restart the Service:</strong> Ollama only scans for CUDA hardware at launch. If you tweak BIOS or Kernel settings, a <code>systemctl restart ollama</code> is mandatory.</li>
+                </ul>
+
+                <div class="bg-purple-50 border-l-4 border-purple-500 p-5 rounded-r-lg shadow-sm mb-8">
+                    <h4 class="text-xl font-bold text-purple-900 mb-2">Moving Forward: The "Agentic" Phase</h4>
+                    <p class="text-purple-800">
+                        Now that the hardware bottleneck is solved, the focus shifts to software performance. With a 31B model, the "Reasoning" is top-tier, but the "Latency" is the new variable.
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-16 border-gray-200">
+        </article>
+
         <article>
             <header class="mb-12">
                 <div class="flex items-center space-x-2 text-blue-600 font-semibold text-sm mb-3 uppercase tracking-wider">
