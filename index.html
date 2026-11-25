@@ -49,6 +49,101 @@
         <article class="mb-20">
             <header class="mb-12">
                 <div class="flex items-center space-x-2 text-blue-600 font-semibold text-sm mb-3 uppercase tracking-wider">
+                    <span>Local AI Infrastructure</span>
+                    <span>•</span>
+                    <span>November 2026</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    Multi-User LAN AI Agent Stack: Privilege-Isolated Ollama, Hermes &amp; Open WebUI
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Scaling from a single-user workstation to a hardened, multi-user LAN AI platform—orchestrated idempotently across three non-sudo Linux service accounts on a 16GB RTX 5060 Ti.
+                </p>
+            </header>
+
+            <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8 shadow-sm">
+                    <h4 class="font-bold text-blue-900 mb-2 font-mono">Status: Multi-User LAN Ready 🚀</h4>
+                    <p class="text-blue-800 text-sm">The local AI node has evolved into a full multi-user LAN agent stack. A single idempotent Bash orchestrator now provisions isolated <code>nologin</code> system accounts for Ollama, per-user Hermes Agent profiles, and Open WebUI—dynamically budgeting 16GB VRAM concurrency and enforcing strict user-level isolation across the home network.</p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">What We’ve Achieved</h3>
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li><strong>Three-Tier Non-Sudo Privilege Isolation:</strong> Split the stack across dedicated, unprivileged <code>/usr/sbin/nologin</code> system users (<code>ollama</code>, <code>hermes-svc</code>, and <code>openwebui-svc</code>) hardened with <code>systemd</code> sandboxing (<code>ProtectSystem=strict</code>, <code>ProtectHome=true</code>, <code>PrivateTmp=true</code>, and <code>NoNewPrivileges=true</code>).</li>
+                    <li><strong>Per-User Hermes Agent Profiles:</strong> Deployed a parameterized <code>hermes-profile@.service</code> unit where each LAN user gets an isolated profile directory, standalone gateway, localhost-bound port (<code>127.0.0.1:8642+</code>), unique 64-character API key, and configurable tool sandboxing (chat/RAG-only or air-gapped <code>--network=none</code> Docker containers).</li>
+                    <li><strong>Dynamic 16GB VRAM Concurrency Budgeting:</strong> Configured the orchestrator to automatically compute <code>OLLAMA_NUM_PARALLEL</code> and <code>OLLAMA_CONTEXT_LENGTH</code> from the chosen Gemma 4 model and registered user count, pairing Flash Attention with <code>q8_0</code> KV cache quantization to prevent VRAM overflow.</li>
+                    <li><strong>Private Model Routing &amp; Clean Sleep Hooks:</strong> Locked Open WebUI strictly to the LAN interface behind UFW subnet rules with Private per-user model visibility, and added a <code>systemd</code> <code>sleep.target</code> hook that evicts loaded models from VRAM (<code>keep_alive: 0</code>) prior to host suspend.</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">The Multi-User Architecture</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 terminal-shadow overflow-x-auto">
+                    <p class="text-gray-400 text-xs mb-2"># Privilege-separated LAN request flow (enforced by systemd + UFW)</p>
+                    <code class="text-green-400 text-sm block whitespace-pre">LAN Client ──▶ Open WebUI (LAN_IP:3000, user: openwebui-svc, Private per-user models)
+                  │
+                  ├──▶ Hermes Profile: alice (127.0.0.1:8642, user: hermes-svc) ──┐
+                  └──▶ Hermes Profile: bob   (127.0.0.1:8643, user: hermes-svc) ──┼──▶ Ollama (127.0.0.1:11434, user: ollama)
+                                                                                     └─▶ Gemma 4 12B / 26B on RTX 5060 Ti (16GB)</code>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">The Final Technical Stack</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full text-left border-collapse border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-gray-700">Layer</th>
+                                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-gray-700">Specification</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Inference Backend</td>
+                                <td class="px-6 py-4">Ollama (<code>127.0.0.1:11434/v1</code>, user: <code>ollama</code>) with Flash Attention &amp; <code>q8_0</code> KV Cache</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Models</td>
+                                <td class="px-6 py-4">Gemma 4 12B (100% VRAM, up to 3 parallel slots) &amp; Gemma 4 26B MoE</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Agent Layer</td>
+                                <td class="px-6 py-4 text-blue-600">Hermes Agent (<code>hermes-profile@.service</code>, <code>127.0.0.1:8642+</code>, user: <code>hermes-svc</code>)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">LAN Frontend</td>
+                                <td class="px-6 py-4">Open WebUI (<code>LAN:3000</code>, user: <code>openwebui-svc</code>) with Private per-user model ACLs</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Orchestration</td>
+                                <td class="px-6 py-4">Idempotent Bash + <code>systemd</code> + <code>uv</code> (<code>UV_NO_CONFIG=1</code>) + UFW LAN firewall</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-gray-900">Hardware Node</td>
+                                <td class="px-6 py-4">Asus B85M-E + 32GB DDR3 + NVIDIA RTX 5060 Ti (16GB VRAM)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Lessons from Multi-User Hardening</h3>
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li><strong>Cold-Start Latency Beats Peak Batch Throughput on 4 Cores:</strong> While vLLM excels in datacenter clusters, CPU-bound <code>torch.compile</code> and FlashInfer JIT builds on a 4-core host added multi-minute startup delays—whereas Ollama's precompiled CUDA binaries start in seconds and expose the exact same <code>/v1</code> API Hermes expects.</li>
+                    <li><strong>Watch Working Directory Traversal Under <code>sudo -u</code>:</strong> Switching to a <code>nologin</code> service user with <code>sudo -u &lt;user&gt; -H</code> preserves the caller's <code>PWD</code>; setting <code>UV_NO_CONFIG=1</code> across PAM, <code>sudoers</code>, and <code>systemd</code> alongside <code>env -C</code> prevents <code>uv</code> from hitting <code>EACCES</code> while probing restricted admin directories.</li>
+                    <li><strong>Evict VRAM Before Suspend:</strong> Unloading active weights via <code>keep_alive: 0</code> in a <code>Before=sleep.target</code> unit frees all 16GB VRAM before sleep so the GPU wakes cleanly without broken CUDA contexts.</li>
+                </ul>
+
+                <div class="bg-purple-50 border-l-4 border-purple-500 p-5 rounded-r-lg shadow-sm mb-8">
+                    <h4 class="text-xl font-bold text-purple-900 mb-2">Moving Forward: Shared Home Lab Intelligence</h4>
+                    <p class="text-purple-800">
+                        With privilege-isolated agents, per-user memory, and automated VRAM budgeting running reproducibly from a single script, every user on the LAN now gets a private AI workspace backed by local hardware—with zero cloud dependencies and clean power management.
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-16 border-gray-200">
+        </article>
+
+        <article class="mb-20">
+            <header class="mb-12">
+                <div class="flex items-center space-x-2 text-blue-600 font-semibold text-sm mb-3 uppercase tracking-wider">
                     <span>AI Inference</span>
                     <span>•</span>
                     <span>June 2026</span>
